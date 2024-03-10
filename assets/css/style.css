@@ -252,26 +252,7 @@ nav{
         border-radius: 45% 55% 45% 55%;
     }
 }
-.scroll-btn{
-   position: absolute;
-   bottom: 0;
-   left: 50%;
-   translate: -50%;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   width: 150px;
-   height: 50px;
-   gap: 5px;
-   text-decoration: none;
-   color: var(--text-color-second);
-   background: var(--color-white);
-   border-radius: 30px;
-   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
-}
-.scroll-btn i{
-    font-size: 20px;
-}
+
 
 /* ----- MAIN BOX ----- */
 .section{
@@ -558,6 +539,7 @@ footer{
     .nav-menu.responsive{
         left: 0;
     }
+
     .nav-menu{
         position: fixed;
         top: 80px;
@@ -574,6 +556,9 @@ footer{
     }
     .nav_menu_list{
         flex-direction: column;
+    }
+    .typedText{
+        font-size: 30px;
     }
     .nav-menu-btn{
         display: flex;
@@ -593,18 +578,18 @@ footer{
         min-height: 60vh;
     }
     .social_icons{
-        margin-top: 2em;
+        margin-top: 2.5em;
     }
     .featured-image{
         order: 1;
         justify-content: center;
         min-height: 150px;
         width: 100%;
-        margin-top: 65px;
+        margin-top: 90px;
     }
     .image, .image img{
-        width: 150px;
-        height: 150px;
+        width: 250px;
+        height: 250px;
     }
     .row{
         display: flex;
@@ -616,7 +601,10 @@ footer{
         display: flex;
         justify-content: center;
         width: 100%;
+        flex-direction: column;
+        
     }
+
     .about-info, .contact-info{
         width: 100%;
     }
