@@ -45,7 +45,7 @@ var typingEffect = new Typed(".typedText",{
 const sr = ScrollReveal({
       origin: 'top',
       distance: '80px',
-      duration: 2000,
+      duration: 1000,
       reset: true     
 })
 
@@ -70,7 +70,7 @@ sr.reveal('.top-header',{})
 const srLeft = ScrollReveal({
 origin: 'left',
 distance: '80px',
-duration: 2000,
+duration: 1000,
 reset: true
 })
 
@@ -86,7 +86,6 @@ reset: true
 })
 
 srRight.reveal('.skills-box',{delay: 100})
-srRight.reveal('.form-control',{delay: 100})
 
 
 
