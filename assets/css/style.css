@@ -375,7 +375,7 @@ h3{
     color: #777;
 }
 .project-box::after, .contact-info::after{
-    content: "";
+    content: "React Projects";
     position: absolute;
     bottom: -100%;
     background: var(--second-color);
