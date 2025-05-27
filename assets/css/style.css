@@ -208,7 +208,6 @@ nav{
 }
 .social_icons{
     display: flex;
-    margin-top: 5em;
     gap: 30px;
 }
 .icon{
@@ -375,7 +374,7 @@ h3{
     color: #777;
 }
 .project-box::after, .contact-info::after{
-    content: "React Projects";
+    content: "";
     position: absolute;
     bottom: -100%;
     background: var(--second-color);
