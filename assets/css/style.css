@@ -15,6 +15,11 @@
   --second-color: #2c0e37;
   --third-color: rgb(192, 166, 49);
   --first-shadow-color: rgba(0, 0, 0, 0.1);
+  
+  h1 {font-size: 48px;}
+  h2 {font-size: 36px;}
+  h3 {font-size: 20px;}
+  h4 {font-size: 18px;}
 }
 
 /* ----- BASE ----- */
@@ -256,13 +261,13 @@ nav {
 }
 .row {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 50px;
 }
 
-#about-card {
-  flex-basis: 40%
+.row > * {
+  flex: 1;
 }
 
 /* -- ## --- RESUABLE CSS -- ## -- */
@@ -390,6 +395,11 @@ h3 {
   transition: 0.4s;
   z-index: 1;
 }
+
+.contact-info > * {
+  margin-left: 10px;
+}
+
 .project-box:hover.project-box::after,
 .contact-info:hover.contact-info::after {
   bottom: 0;
@@ -510,7 +520,7 @@ footer {
     width: 100%;
     min-height: 450px;
     height: 90vh;
-    transition: 0.3s;
+    transition: 0.2s;
   }
   .nav_menu_list {
     flex-direction: column;
