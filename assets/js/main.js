@@ -33,7 +33,7 @@ function headerShadow() {
 
 /* ----- TYPING EFFECT ----- */
 var typingEffect = new Typed(".typedText",{
-  strings : ["Developer"],
+  strings : ["Developer", 'Problem Solver', 'Tech Enthusiast'],
   loop : true,
   typeSpeed : 100, 
   backSpeed : 80,
@@ -114,3 +114,4 @@ sections.forEach(current =>{
 }
 
 window.addEventListener('scroll', scrollActive)
+
