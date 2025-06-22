@@ -384,7 +384,6 @@ h3 {
   font-size: 15px;
   color: #404040;
 }
-.project-box::after,
 .contact-info::after {
   content: "";
   position: absolute;
@@ -400,16 +399,11 @@ h3 {
   margin-left: 10px;
 }
 
-.project-box:hover.project-box::after,
+
 .contact-info:hover.contact-info::after {
   bottom: 0;
 }
-.project-box:hover.project-box i,
-.project-box:hover.project-box > h3,
-.project-box:hover.project-box > label {
-  color: var(--color-white);
-  z-index: 2;
-}
+
 
 /* ----- CONTACT BOX ----- */
 .contact-info {
@@ -486,6 +480,30 @@ footer {
   font-size: 14px;
   margin-top: 10px;
 }
+
+.project-box {
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.project-box:hover {
+  transform: translateY(-5px);
+}
+
+.project-links a {
+  margin-right: 15px;
+  text-decoration: none;
+  color: #007BFF;
+  font-weight: 500;
+}
+
+.project-links a:hover {
+  text-decoration: underline;
+}
+
 
 /* ----- MEDIA QUERY == 1024px / RESPONSIVE ----- */
 @media only screen and (max-width: 1024px) {
