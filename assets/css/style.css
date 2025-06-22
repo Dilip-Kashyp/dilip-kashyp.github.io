@@ -15,11 +15,19 @@
   --second-color: #2c0e37;
   --third-color: rgb(192, 166, 49);
   --first-shadow-color: rgba(0, 0, 0, 0.1);
-  
-  h1 {font-size: 48px;}
-  h2 {font-size: 36px;}
-  h3 {font-size: 20px;}
-  h4 {font-size: 18px;}
+
+  h1 {
+    font-size: 48px;
+  }
+  h2 {
+    font-size: 36px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  h4 {
+    font-size: 18px;
+  }
 }
 
 /* ----- BASE ----- */
@@ -340,7 +348,6 @@ h3 {
   width: 100%;
 }
 
-
 .skills-list {
   display: flex;
   flex-wrap: wrap;
@@ -358,8 +365,8 @@ h3 {
 .project-container {
   display: flex;
   width: 100%;
-  justify-content: space-between;
-  gap: 20px;
+  justify-content: space-around;
+  gap: 80px;
   flex-wrap: wrap;
 }
 .project-box {
@@ -368,22 +375,16 @@ h3 {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 30%;
+  width: 40%;
   height: 250px;
+  gap: 20px;
   background: var(--color-white);
   border-radius: 20px;
   box-shadow: 1px 8px 10px 2px var(--first-shadow-color);
   overflow: hidden;
 }
-.project-box > i {
-  font-size: 50px;
-  color: #00b5e7;
-  margin-bottom: 25px;
-}
-.project-box label {
-  font-size: 15px;
-  color: #404040;
-}
+
+
 .contact-info::after {
   content: "";
   position: absolute;
@@ -399,11 +400,9 @@ h3 {
   margin-left: 10px;
 }
 
-
 .contact-info:hover.contact-info::after {
   bottom: 0;
 }
-
 
 /* ----- CONTACT BOX ----- */
 .contact-info {
@@ -417,7 +416,7 @@ h3 {
   height: 315px;
   background: var(--second-color);
   border-radius: 10px;
-  box-shadow: 1px 8px 10px 2px var(--first-shadow-color);
+
   overflow: hidden;
 }
 .contact-info > h2 {
@@ -483,27 +482,22 @@ footer {
 
 .project-box {
   background-color: #f9f9f9;
-  padding: 1.5rem;
+  padding: 1rem;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  box-shadow: 1px 8px 10px 2px var(--first-shadow-color);
   transition: transform 0.3s ease;
-}
-
-.project-box:hover {
-  transform: translateY(-5px);
 }
 
 .project-links a {
   margin-right: 15px;
   text-decoration: none;
-  color: #007BFF;
+  color: var(--second-color);
   font-weight: 500;
 }
 
 .project-links a:hover {
   text-decoration: underline;
 }
-
 
 /* ----- MEDIA QUERY == 1024px / RESPONSIVE ----- */
 @media only screen and (max-width: 1024px) {
@@ -599,7 +593,7 @@ footer {
     justify-content: center;
   }
   .project-box {
-    width: 80%;
+    width: 100%;
   }
 }
 
