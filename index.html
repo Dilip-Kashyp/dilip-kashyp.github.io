@@ -1,290 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- --------- UNICONS ---------- -->
-    <link
-      rel="stylesheet"
-      href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
-    />
-    <!-- --------- CSS ---------- -->
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <!-- --------- FAVICON ---------- -->
-    <link
-      rel="shortcut icon"
-      href="assets/images/favicon.png"
-      type="image/x-icon"
-    />
-    <title>Portfolio | Dilip Kumar</title>
-  </head>
-  <body>
-    <div class="container">
-      <!-- --------------- HEADER --------------- -->
-      <nav id="header">
-        <div class="nav-logo">
-          <p class="nav-name">Dilip</p>
-          <span>.</span>
-        </div>
-        <div class="nav-menu" id="myNavMenu">
-          <ul class="nav_menu_list">
-            <li class="nav_list">
-              <a href="#home" class="nav-link active-link">Home</a>
-              <div class="circle"></div>
-            </li>
-            <li class="nav_list">
-              <a href="#about" class="nav-link">About</a>
-              <div class="circle"></div>
-            </li>
-            <li class="nav_list">
-              <a href="#projects" class="nav-link">Projects</a>
-              <div class="circle"></div>
-            </li>
-            <li class="nav_list">
-              <a href="#contact" class="nav-link">Contact</a>
-              <div class="circle"></div>
-            </li>
-          </ul>
-        </div>
-        <div class="nav-button">
-          <a
-            href="https://drive.google.com/file/d/1kfuj1IkGES4NCjqq7Ptkb7eRYZz24zX4/view?usp=drive_link"
-            target="_blank"
-            class="btn resume"
-            >Resume <i class="uil uil-file-alt"></i
-          ></a>
-        </div>
-        <div class="nav-darkmode-btn">
-          <i
-            class="uil uil-moon"
-            id="darkModeToggle"
-            onclick="toggleDarkMode()"
-          ></i>
-        </div>
 
-        <div class="nav-menu-btn">
-          <i class="uil uil-bars" onclick="myMenuFunction()"></i>
-        </div>
-      </nav>
-      <!-- -------------- MAIN ---------------- -->
-      <main class="wrapper">
-        <!-- -------------- FEATURED BOX ---------------- -->
-        <section class="featured-box" id="home">
-          <div class="featured-text">
-            <div class="featured-text-card">
-              <span>Dilip Kumar </span>
-            </div>
-            <div class="featured-name">
-              <p>I'm <span class="typedText"></span></p>
-            </div>
-            <div class="featured-text-info">
-              <p>
-                I'm a web developer, building websites with new tech and always
-                eager to learn and improve. Let's create something awesome!.
-              </p>
-            </div>
-            <div class="social_icons">
-              <a
-                href="https://www.linkedin.com/in/dilip-kashyap"
-                target="_blank"
-                ><div class="icon"><i class="uil uil-linkedin-alt"></i></div
-              ></a>
-              <a href="https://github.com/Dilip-Kashyp" target="_blank"
-                ><div class="icon"><i class="uil uil-github-alt"></i></div
-              ></a>
-            </div>
-          </div>
-          <div class="featured-image">
-            <div class="image">
-              <img src="assets/images/avatar.png" alt="avatar" />
-            </div>
-          </div>
-        </section>
-        <!-- -------------- ABOUT BOX ---------------- -->
-        <section class="section" id="about">
-          <div class="top-header">
-            <h2>About Me</h2>
-          </div>
-          <div class="row">
-            <div class="about-info">
-              <h3>Introduction</h3>
-              <p>
-                Detail-oriented BCA student with a strong passion for technology
-                and good understanding of computer science principles. Seeking
-                hands-on experience to apply theoretical knowledge in practical
-                settings. Eager to contribute to dynamic team environments,
-                learn from professionals, and enhance technical skills in the
-                tech field.
-              </p>
-              <div class="about-btn"></div>
-            </div>
-            <div id="skills-card" class="col-resp">
-              <div class="skills-box">
-                <h3 class="center">Skills</h3>
-                <div class="skills-header">
-                  <h4>Languages</h4>
-                </div>
-                <div class="skills-list">
-                  <span>JavaScript</span>
-                  <span>HTML</span>
-                  <span>CSS</span>
-                  <span>Python</span>
-                  <span>C/C++</span>
-                </div>
-              </div>
-              <div class="skills-box">
-                <div class="skills-header">
-                  <h4>Frameworks</h4>
-                </div>
-                <div class="skills-list">
-                  <span>Node JS</span>
-                  <span>React JS</span>
-                  <span>Next JS</span>
-                  <span>Django</span>
-                </div>
-              </div>
-              <div class="skills-box">
-                <div class="skills-header">
-                  <h4>Developer Tools</h4>
-                </div>
-                <div class="skills-list">
-                  <span>Git</span>
-                  <span>Docker</span>
-                  <span>VS Code</span>
-                  <span>Linux</span>
-                  <span>Insomnia</span>
-                  <span>Docker</span>
-                  <span>AWS</span>
-                </div>
-              </div>
-              <div class="skills-box">
-                <div class="skills-header">
-                  <h4>Database</h4>
-                </div>
-                <div class="skills-list">
-                  <span>PostgreSQL</span>
-                  <span>MongoDB</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <!-- -------------- PROJECT BOX ---------------- -->
-        <section class="section" id="projects">
-          <div class="top-header">
-            <h2>Projects</h2>
-          </div>
-          <div class="project-container">
-            <div class="project-box">
-              <h3>Scholar Match AI</h3>
-              <p>
-                An AI-powered web app recommending scholarships using Gemini AI.
-              </p>
-              <p>
-                <strong>Tech Stack:</strong> Next.js, Node.js, PostgreSQL,
-                Gemini AI
-              </p>
-              <div class="project-links">
-                <a href="https://scholar-match-ai.vercel.app" target="_blank"
-                  >Live</a
-                >
-                <a
-                  href="https://github.com/Dilip-Kashyp/scholar-match-ai"
-                  target="_blank"
-                  >GitHub</a
-                >
-              </div>
-            </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- --------- UNICONS ---------- -->
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
+  <!-- --------- CSS ---------- -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <!-- --------- FAVICON ---------- -->
+  <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon" />
+  <title>Portfolio | Dilip Kumar</title>
+</head>
 
-            <div class="project-box">
-              <h3>Job Portal (Under Development)</h3>
-              <p>
-                A job listing and application platform with user authentication.
-              </p>
-              <p>
-                <strong>Tech Stack:</strong> Nextjs, Node.js/Expressjs, PostgreSQL
-              </p>
-              <div class="project-links">
-                <a
-                  href="https://job-portal-lemon-one.vercel.app/"
-                  target="_blank"
-                  >Live</a
-                >
-                <a
-                  href="https://github.com/Dilip-Kashyp/job-portal"
-                  target="_blank"
-                  >GitHub</a
-                >
-              </div>
-            </div>
+<body>
+  <div class="container">
+    <!-- --------------- HEADER --------------- -->
+    <nav id="header">
+      <div class="nav-logo">
+        <p class="nav-name">Dilip</p>
+        <span>.</span>
+      </div>
+      <div class="nav-menu" id="myNavMenu">
+        <ul class="nav_menu_list">
+          <li class="nav_list">
+            <a href="#home" class="nav-link active-link">Home</a>
+            <div class="circle"></div>
+          </li>
+          <li class="nav_list">
+            <a href="#about" class="nav-link">About</a>
+            <div class="circle"></div>
+          </li>
+          <li class="nav_list">
+            <a href="#projects" class="nav-link">Projects</a>
+            <div class="circle"></div>
+          </li>
+          <li class="nav_list">
+            <a href="#contact" class="nav-link">Contact</a>
+            <div class="circle"></div>
+          </li>
+        </ul>
+      </div>
+      <div class="nav-button">
+        <a href="https://drive.google.com/file/d/1kfuj1IkGES4NCjqq7Ptkb7eRYZz24zX4/view?usp=drive_link" target="_blank"
+          class="btn resume">Resume <i class="uil uil-file-alt"></i></a>
+      </div>
+      <div class="nav-darkmode-btn">
+        <i class="uil uil-sun" id="darkModeToggle" onclick="toggleDarkMode()"></i>
+      </div>
 
-            <div class="project-box">
-              <h3>Goovo Event</h3>
-              <p>
-                A real-time chat application using Firebase authentication and
-                database.
-              </p>
-              <p>
-                <strong>Tech Stack:</strong> Nextjs, Material UI, Tailwind CSS
-              </p>
-              <div class="project-links">
-                <a href="https://goovo-event.vercel.app/" target="_blank"
-                  >Live</a
-                >
-                <a
-                  href="https://github.com/Dilip-Kashyp/Goovo-Event/"
-                  target="_blank"
-                  >GitHub</a
-                >
+      <div class="nav-menu-btn">
+        <i class="uil uil-bars" onclick="myMenuFunction()"></i>
+      </div>
+    </nav>
+    <!-- -------------- MAIN ---------------- -->
+    <main class="wrapper">
+      <!-- -------------- FEATURED BOX ---------------- -->
+      <section class="featured-box" id="home">
+        <div class="featured-text">
+          <div class="featured-text-card">
+            <span>Dilip Kumar </span>
+          </div>
+          <div class="featured-name">
+            <p>I'm <span class="typedText"></span></p>
+          </div>
+          <div class="featured-text-info">
+            <p>
+              I'm a web developer, building websites with new tech and always
+              eager to learn and improve. Let's create something awesome!.
+            </p>
+          </div>
+          <div class="social_icons">
+            <a href="https://www.linkedin.com/in/dilip-kashyap" target="_blank">
+              <div class="icon"><i class="uil uil-linkedin-alt"></i></div>
+            </a>
+            <a href="https://github.com/Dilip-Kashyp" target="_blank">
+              <div class="icon"><i class="uil uil-github-alt"></i></div>
+            </a>
+          </div>
+        </div>
+        <div class="featured-image">
+          <div class="image">
+            <img src="assets/images/avatar.png" alt="avatar" />
+          </div>
+        </div>
+      </section>
+      <!-- -------------- ABOUT BOX ---------------- -->
+      <section class="section" id="about">
+        <div class="top-header">
+          <h2>About Me</h2>
+        </div>
+        <div class="row">
+          <div class="about-info">
+            <h3>Introduction</h3>
+            <p>
+              I am a backend focused full-stack engineer with over 1 year of experience building APIs, authentication
+              systems, and backend services in Python and Node.js/Express, with hands-on work across PostgreSQL,
+              MongoDB, and Redis. Experience spans JWT/OAuth authentication, AWS-based document-processing pipelines,
+              payment integrations, and rate-limited API design for production and personal backend systems.
+            </p>
+            <div class="about-btn"></div>
+          </div>
+          <div id="skills-card" class="col-resp">
+            <div class="skills-box">
+              <h3 class="center">Skills</h3>
+              <div class="skills-header">
+                <h4>Languages</h4>
+              </div>
+              <div class="skills-list">
+                <span>Python</span>
+                <span>JavaScript</span>
+                <span>TypeScript</span>
+                <span>SQL</span>
+                <span>HTML</span>
+                <span>CSS</span>
+              </div>
+            </div>
+            <div class="skills-box">
+              <div class="skills-header">
+                <h4>Backend & Frameworks</h4>
+              </div>
+              <div class="skills-list">
+                <span>FastAPI</span>
+                <span>Node.js</span>
+                <span>Express.js</span>
+                <span>Next.js</span>
+                <span>REST APIs</span>
+              </div>
+            </div>
+            <div class="skills-box">
+              <div class="skills-header">
+                <h4>Developer Tools</h4>
+              </div>
+              <div class="skills-list">
+                <span>Git & GitHub</span>
+                <span>Docker</span>
+                <span>AWS</span>
+                <span>Linux</span>
+                <span>Postman</span>
+                <span>PM2</span>
+              </div>
+            </div>
+            <div class="skills-box">
+              <div class="skills-header">
+                <h4>Databases & Services</h4>
+              </div>
+              <div class="skills-list">
+                <span>PostgreSQL</span>
+                <span>MongoDB</span>
+                <span>Redis</span>
               </div>
             </div>
           </div>
-        </section>
-        <!-- -------------- CONTACT BOX ---------------- -->
-        <section class="section" id="contact">
-          <div class="top-header">
-            <h2>Get in touch</h2>
-            <span>Do you have a project in your mind? Contact me here!</span>
-          </div>
-          <div>
-            <div class="contact-info">
-              <h2>Find Me <i class="uil uil-corner-right-down"></i></h2>
-              <p><i class="uil uil-envelope"></i>dilipkumer092@gmail.com</p>
-              <p><i class="uil uil-phone"></i>+91 8950369581</p>
-              <p>
-                <i class="uil uil-linkedin"></i>
-                <a
-                  href="https://www.linkedin.com/in/dilip-kashyap"
-                  target="_blank"
-                  >Linkedin</a
-                >
-              </p>
-              <p>
-                <i class="uil uil-github"></i>
-                <a href="https://github.com/Dilip-Kashyp" target="_blank"
-                  >Github</a
-                >
-              </p>
+        </div>
+      </section>
+      <!-- -------------- PROJECT BOX ---------------- -->
+      <section class="section" id="projects">
+        <div class="top-header">
+          <h2>Projects</h2>
+        </div>
+        <div class="project-container">
+          <div class="project-box">
+            <h3>Atlas</h3>
+            <p>
+              A conversation-intelligence platform connecting Slack and GitHub to process team conversations and code
+              activity into actionable outputs.
+            </p>
+            <p>
+              <strong>Tech Stack:</strong> Next.js, FastAPI, PostgreSQL, MongoDB, Redis, Gemini AI
+            </p>
+            <div class="project-links">
+              <a href="https://github.com/Dilip-Kashyp/atlas" target="_blank">GitHub</a>
             </div>
           </div>
-        </section>
-      </main>
-      <!-- --------------- FOOTER --------------- -->
-      <footer>
-        <div class="bottom-footer">
-          <p>
-            Copyright &copy;
-            <a href="#home" style="text-decoration: none">Dilip Kumar</a> - All
-            rights reserved
-          </p>
+
+          <div class="project-box">
+            <h3>ContriHub</h3>
+            <p>
+              A platform that helps developers discover beginner-friendly GitHub projects via language, topic, label,
+              and star-based filters.
+            </p>
+            <p>
+              <strong>Tech Stack:</strong> Next.js, Go, Gin, PostgreSQL, Redis, Groq AI
+            </p>
+            <div class="project-links">
+              <a href="https://github.com/Dilip-Kashyp/contrihub" target="_blank">GitHub</a>
+            </div>
+          </div>
+
+          <div class="project-box">
+            <h3>Jugaad Link</h3>
+            <p>
+              A URL-management platform backend supporting custom aliases, password protection, expiry rules, click
+              limits, and guest access.
+            </p>
+            <p>
+              <strong>Tech Stack:</strong> Next.js, TypeScript, Go, PostgreSQL, Redis, Docker
+            </p>
+            <div class="project-links">
+              <a href="https://github.com/Dilip-Kashyp/jugaad-link" target="_blank">GitHub</a>
+            </div>
+          </div>
+
+          <div class="project-box">
+            <h3>My Notes</h3>
+            <p>
+              An interactive markdown note navigator and note-taking application.
+            </p>
+            <p>
+              <strong>Tech Stack:</strong> Next.js, React, Tailwind CSS
+            </p>
+            <div class="project-links">
+              <a href="https://my-notes-in.vercel.app/" target="_blank">Live</a>
+              <a href="https://github.com/Dilip-Kashyp/my-notes" target="_blank">GitHub</a>
+            </div>
+          </div>
         </div>
-      </footer>
-    </div>
-    <!-- ----- TYPING JS Link ----- -->
-    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-    <!-- ----- SCROLL REVEAL JS Link----- -->
-    <script src="https://unpkg.com/scrollreveal"></script>
-    <!-- ----- MAIN JS ----- -->
-    <script src="assets/js/main.js"></script>
-  </body>
+      </section>
+      <!-- -------------- CONTACT BOX ---------------- -->
+      <section class="section" id="contact">
+        <div class="top-header">
+          <h2>Get in touch</h2>
+          <span>Do you have a project in your mind? Contact me here!</span>
+        </div>
+        <div>
+          <div class="contact-info">
+            <h2>Find Me <i class="uil uil-corner-right-down"></i></h2>
+            <p><i class="uil uil-envelope"></i>info@dilipkashyap.in</p>
+            <p><i class="uil uil-phone"></i>+91 8950369581</p>
+            <p>
+              <i class="uil uil-linkedin"></i>
+              <a href="https://www.linkedin.com/in/dilip-kashyap" target="_blank">Linkedin</a>
+            </p>
+            <p>
+              <i class="uil uil-github"></i>
+              <a href="https://github.com/Dilip-Kashyp" target="_blank">Github</a>
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- --------------- FOOTER --------------- -->
+    <footer>
+      <div class="bottom-footer">
+        <p>
+          Copyright &copy;
+          <a href="#home" style="text-decoration: none">Dilip Kumar</a> - All
+          rights reserved
+        </p>
+      </div>
+    </footer>
+  </div>
+  <!-- ----- TYPING JS Link ----- -->
+  <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+  <!-- ----- SCROLL REVEAL JS Link----- -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <!-- ----- MAIN JS ----- -->
+  <script src="assets/js/main.js"></script>
+</body>
+
 </html>
