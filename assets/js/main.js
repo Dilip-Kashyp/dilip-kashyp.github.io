@@ -115,3 +115,18 @@ sections.forEach(current =>{
 
 window.addEventListener('scroll', scrollActive)
 
+
+/* ----- DARK MODE TOGGLE ----- */
+function toggleDarkMode() {
+  const body = document.body;
+  body.classList.toggle("light-theme");
+  
+  const darkModeToggle = document.getElementById("darkModeToggle");
+  if (body.classList.contains("light-theme")) {
+    darkModeToggle.classList.remove("uil-sun");
+    darkModeToggle.classList.add("uil-moon");
+  } else {
+    darkModeToggle.classList.remove("uil-moon");
+    darkModeToggle.classList.add("uil-sun");
+  }
+}
