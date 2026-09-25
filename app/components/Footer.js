@@ -1,1 +1,0 @@
-export default function Footer(){return <footer><span>© 2026 All rights reserved</span><div className="footer-links"><a href="https://github.com/Dilip-Kashyp" target="_blank" rel="noopener">GitHub</a><a href="https://www.linkedin.com/in/dilip-kashyap" target="_blank" rel="noopener">LinkedIn</a><a href="#">Twitter</a></div></footer>}
