@@ -1,0 +1,2 @@
+import Chat from '../components/Chat';
+export default function ChatPage(){return <main><section className="page-section chat-page"><div className="chat-shell"><div className="chat-intro scroll-reveal"><span className="section-label">KNOWLEDGE BASE</span><h1>Ask Dilip's<br/><span>knowledge base.</span></h1><p>Search connected projects, experience, and technical notes using natural language.</p></div><div className="scroll-reveal"><Chat/></div></div></section></main>}
