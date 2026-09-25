@@ -1,0 +1,99 @@
+diff --git a/assets/css/style.css b/assets/css/style.css
+index c7d6f28..d1394df 100644
+--- a/assets/css/style.css
++++ b/assets/css/style.css
+@@ -15,6 +15,11 @@
+   --second-color: #2c0e37;
+   --third-color: rgb(192, 166, 49);
+   --first-shadow-color: rgba(0, 0, 0, 0.1);
++  
++  h1 {font-size: 48px;}
++  h2 {font-size: 36px;}
++  h3 {font-size: 20px;}
++  h4 {font-size: 18px;}
+ }
+ 
+ /* ----- BASE ----- */
+@@ -256,13 +261,13 @@ nav {
+ }
+ .row {
+   display: flex;
+-  justify-content: space-between;
+-  width: 100%;
++  flex-direction: row;
++  flex-wrap: wrap;
+   gap: 50px;
+ }
+ 
+-#about-card {
+-  flex-basis: 40%
++.row > * {
++  flex: 1;
+ }
+ 
+ /* -- ## --- RESUABLE CSS -- ## -- */
+@@ -390,6 +395,11 @@ h3 {
+   transition: 0.4s;
+   z-index: 1;
+ }
++
++.contact-info > * {
++  margin-left: 10px;
++}
++
+ .project-box:hover.project-box::after,
+ .contact-info:hover.contact-info::after {
+   bottom: 0;
+@@ -510,7 +520,7 @@ footer {
+     width: 100%;
+     min-height: 450px;
+     height: 90vh;
+-    transition: 0.3s;
++    transition: 0.2s;
+   }
+   .nav_menu_list {
+     flex-direction: column;
+diff --git a/index.html b/index.html
+index 1ffa631..581b8ef 100644
+--- a/index.html
++++ b/index.html
+@@ -101,10 +101,9 @@
+         <!-- -------------- ABOUT BOX ---------------- -->
+         <section class="section" id="about">
+           <div class="top-header">
+-            <h1>About Me</h1>
++            <h2>About Me</h2>
+           </div>
+           <div class="row">
+-            <div id="about-card" class="col">
+               <div class="about-info">
+                 <h3>Introduction</h3>
+                 <p>
+@@ -116,7 +115,6 @@
+                   enhance technical skills in the tech field.
+                 </p>
+                 <div class="about-btn"></div>
+-              </div>
+             </div>
+             <div id="skills-card" class="col-resp">
+               <div class="skills-box">
+@@ -172,7 +170,7 @@
+         <!-- -------------- PROJECT BOX ---------------- -->
+         <section class="section" id="projects">
+           <div class="top-header">
+-            <h1>Projects</h1>
++            <h2>Projects</h2>
+           </div>
+           <div class="project-container">
+             <div class="project-box"></div>
+@@ -183,8 +181,8 @@
+         <!-- -------------- CONTACT BOX ---------------- -->
+         <section class="section" id="contact">
+           <div class="top-header">
+-            <h1>Get in touch</h1>
+-            <span>Do you have a project in your mind, contact me here</span>
++            <h2>Get in touch</h2>
++            <span>Do you have a project in your mind? Contact me here!</span>
+           </div>
+           <div>
+             <div class="contact-info">
