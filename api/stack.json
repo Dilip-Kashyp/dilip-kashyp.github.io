@@ -1,0 +1,8 @@
+{
+  "languages": ["Python", "Go", "TypeScript", "JavaScript", "SQL"],
+  "backend": ["FastAPI", "Node.js", "Express", "Gin", "GORM", "SQLAlchemy"],
+  "ai": ["RAG", "hybrid search", "cross-encoder reranking", "pgvector", "Gemini", "Groq", "AWS Bedrock"],
+  "data": ["PostgreSQL", "Redis", "MongoDB"],
+  "cloud": ["AWS", "Azure", "Docker", "GitHub Actions"],
+  "frontend": ["React", "Next.js", "Tailwind CSS"]
+}

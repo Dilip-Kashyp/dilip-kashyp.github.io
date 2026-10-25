@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Jugaad Link",
+    "what": "URL shortener with Redis-cached redirects",
+    "stack": ["Go", "Gin", "PostgreSQL", "Redis", "Next.js"],
+    "live": "https://jugaadlink.vercel.app",
+    "code": "https://github.com/Dilip-Kashyp/jugaadlink-be"
+  },
+  {
+    "name": "Atlas",
+    "what": "Multi-tenant Slack + GitHub assistant with Gemini tool calling",
+    "stack": ["Python", "FastAPI", "PostgreSQL", "Gemini", "Next.js"],
+    "code": "https://github.com/Dilip-Kashyp/Atles"
+  },
+  {
+    "name": "ContriHub",
+    "what": "Finds beginner-friendly open-source projects, with AI repo explanations",
+    "stack": ["Go", "Gin", "PostgreSQL", "Redis", "Groq", "Next.js"],
+    "live": "https://contri-hub.vercel.app",
+    "code": "https://github.com/Dilip-Kashyp/ContriHub"
+  }
+]

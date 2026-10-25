@@ -1,0 +1,14 @@
+{
+  "name": "Dilip Kumar",
+  "role": "Backend & AI Engineer",
+  "experience_years": 2,
+  "current": {
+    "title": "Full-Stack Engineer",
+    "company": "Stryv.ai",
+    "since": "2025-07"
+  },
+  "location": "Hyderabad, India",
+  "open_to": ["Backend Engineer", "AI Engineer", "Full-Stack Engineer"],
+  "work_locations": ["Hyderabad", "Bengaluru", "Remote"],
+  "focus": ["APIs & auth", "Caching & rate limiting", "RAG pipelines"]
+}

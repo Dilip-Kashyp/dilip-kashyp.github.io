@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>404 | Dilip Kumar</title>
+  <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+  <!-- Absolute paths: GitHub Pages serves this file for any missing URL. -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("theme");
+        if (saved === "light" || saved === "dark") document.documentElement.dataset.theme = saved;
+      } catch (e) { }
+    })();
+  </script>
+</head>
+
+<body>
+  <main class="notfound wrap">
+    <p class="kicker"><span>404</span>Route not found</p>
+    <h1>This endpoint <em>doesn't exist.</em></h1>
+    <div class="console">
+      <div class="console-bar">
+        <span class="console-lights" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="console-title">dilipkashyap.in</span>
+      </div>
+      <div class="console-body">
+        <p class="console-cmd"><span class="console-prompt">$</span> curl -i dilipkashyap.in<span id="path">/…</span></p>
+        <p class="console-status"><span class="c-err">404 Not Found</span> · application/json</p>
+        <pre class="console-json notfound-json"><code id="body">{
+  <span class="j-key">"error"</span>: <span class="j-str">"route_not_found"</span>,
+  <span class="j-key">"hint"</span>: <span class="j-str">"Try the homepage, or press Ctrl K there to jump anywhere."</span>
+}</code></pre>
+      </div>
+    </div>
+    <a class="btn btn-primary" href="/">Back to the homepage</a>
+  </main>
+  <script>
+    (function () {
+      var path = location.pathname;
+      document.getElementById("path").textContent = path;
+      var key = function (k) { return '<span class="j-key">"' + k + '"</span>'; };
+      var str = function (v) {
+        var safe = JSON.stringify(v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        return '<span class="j-str">' + safe + "</span>";
+      };
+      document.getElementById("body").innerHTML =
+        "{\n  " + key("error") + ": " + str("route_not_found") +
+        ",\n  " + key("path") + ": " + str(path) +
+        ",\n  " + key("hint") + ": " + str("Try the homepage, or press Ctrl K there to jump anywhere.") + "\n}";
+    })();
+  </script>
+</body>
+
+</html>
