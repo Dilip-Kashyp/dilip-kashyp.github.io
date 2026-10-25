@@ -1,4 +1,4 @@
-/* Page behaviour: theme, nav, reveal, the API console, skill evidence,
+/* Page behaviour: theme, reveal, the API console, skill evidence,
    the command palette and small helpers. Flow diagrams live in flows.js and
    the resume chat in ask.js. */
 (() => {
@@ -81,17 +81,14 @@
 
   $$("[data-copy]").forEach((button) => button.addEventListener("click", () => copy(button.dataset.copy)));
 
-  // ---------- Scroll: nav state, progress bar, active section ----------
-  const nav = $("#nav");
+  // ---------- Scroll progress bar ----------
   const progress = $(".progress");
   let ticking = false;
 
   function onScroll() {
     ticking = false;
-    const y = window.scrollY;
-    if (nav) nav.classList.toggle("scrolled", y > 8);
     const max = root.scrollHeight - window.innerHeight;
-    if (progress) progress.style.setProperty("--p", max > 0 ? (y / max).toFixed(4) : "0");
+    if (progress) progress.style.setProperty("--p", max > 0 ? (window.scrollY / max).toFixed(4) : "0");
   }
 
   window.addEventListener("scroll", () => {
@@ -102,27 +99,9 @@
   }, { passive: true });
   onScroll();
 
-  const navLinks = $$(".nav-links a");
-  if (navLinks.length && "IntersectionObserver" in window) {
-    const byId = new Map(navLinks.map((a) => [a.getAttribute("href").slice(1), a]));
-    const sectionObserver = new IntersectionObserver((entries) => {
-      for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
-        navLinks.forEach((a) => {
-          a.classList.remove("active");
-          a.removeAttribute("aria-current");
-        });
-        const link = byId.get(entry.target.id);
-        if (link) {
-          link.classList.add("active");
-          link.setAttribute("aria-current", "true");
-        }
-      }
-    }, { rootMargin: "-45% 0px -50% 0px" });
-    $$("main section[id]").forEach((section) => sectionObserver.observe(section));
-  }
-
   function scrollToTarget(selector) {
+    // stack.js can reach ids inside cards and sliders.
+    if (window.DK && window.DK.stack && window.DK.stack.goTo(selector.slice(1))) return;
     const target = $(selector);
     if (!target) return;
     target.scrollIntoView({ behavior: reducedMotion.matches ? "auto" : "smooth", block: "start" });
@@ -160,7 +139,7 @@
     revealables.forEach((el) => el.classList.add("in"));
   }
 
-  // ---------- Pointer effects: card spotlight, hero glow ----------
+  // ---------- Pointer effect: card spotlight ----------
   if (finePointer.matches) {
     let lastCard = null;
     document.addEventListener("pointermove", (event) => {
@@ -174,30 +153,6 @@
       const box = card.getBoundingClientRect();
       card.style.setProperty("--mx", `${event.clientX - box.left}px`);
       card.style.setProperty("--my", `${event.clientY - box.top}px`);
-    }, { passive: true });
-  }
-
-  const hero = $(".hero");
-  const glow = $(".hero-glow");
-  if (hero && glow && finePointer.matches && !reducedMotion.matches) {
-    const box = hero.getBoundingClientRect();
-    let x = box.width * 0.62;
-    let y = box.height * 0.32;
-    let tx = x;
-    let ty = y;
-    let raf = 0;
-    const tick = () => {
-      x += (tx - x) * 0.08;
-      y += (ty - y) * 0.08;
-      glow.style.setProperty("--gx", `${x}px`);
-      glow.style.setProperty("--gy", `${y}px`);
-      raf = Math.abs(tx - x) + Math.abs(ty - y) > 0.5 ? requestAnimationFrame(tick) : 0;
-    };
-    hero.addEventListener("pointermove", (event) => {
-      const rect = hero.getBoundingClientRect();
-      tx = event.clientX - rect.left;
-      ty = event.clientY - rect.top;
-      if (!raf) raf = requestAnimationFrame(tick);
     }, { passive: true });
   }
 
@@ -336,8 +291,17 @@
     });
     $("[data-copy-curl]", box).addEventListener("click", () => copy(`curl -s https://dilipkashyap.in/api/${current}.json`));
 
-    // Replay the first request once the hero has settled.
-    setTimeout(() => load("me"), reducedMotion.matches ? 0 : 700);
+    // Run the first request when the console scrolls into view.
+    if ("IntersectionObserver" in window) {
+      const seen = new IntersectionObserver((entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        seen.disconnect();
+        load("me");
+      }, { threshold: 0.5 });
+      seen.observe(box);
+    } else {
+      load("me");
+    }
   }
 
   initConsole();
@@ -391,27 +355,35 @@
   }
 
   const chips = $$(".chip[data-skill]");
-  $$(".skill-group").forEach((group, i) => {
-    const detail = $(".skill-detail", group);
-    detail.id = `skill-detail-${i}`;
-    $$(".chip", group).forEach((chip) => {
-      chip.setAttribute("aria-expanded", "false");
-      chip.setAttribute("aria-controls", detail.id);
-    });
+  const skillDetail = $("#skill-detail");
+  const skillPanel = $(".skill-panel");
+  const panelHome = skillPanel && skillPanel.parentElement;
+  const phone = window.matchMedia("(max-width: 720px)");
+  chips.forEach((chip) => chip.setAttribute("aria-controls", "skill-detail"));
+
+  // On phones the groups stack in one column, so show the panel right under
+  // the tapped group instead of at the bottom of the list.
+  function placePanel(chip) {
+    if (!skillPanel) return;
+    if (phone.matches) chip.closest(".skill-group").after(skillPanel);
+    else if (skillPanel.parentElement !== panelHome) panelHome.append(skillPanel);
+  }
+
+  phone.addEventListener("change", () => {
+    const current = chips.find((c) => c.getAttribute("aria-pressed") === "true");
+    if (current) placePanel(current);
   });
 
   function showSkill(chip) {
-    const wasOpen = chip.getAttribute("aria-expanded") === "true";
-    chips.forEach((c) => c.setAttribute("aria-expanded", "false"));
-    $$(".skill-detail").forEach((d) => {
-      d.hidden = true;
-    });
     const skill = SKILLS[chip.dataset.skill];
-    if (wasOpen || !skill) return;
-    const detail = $(".skill-detail", chip.closest(".skill-group"));
-    detail.innerHTML = renderSkill(skill);
-    detail.hidden = false;
-    chip.setAttribute("aria-expanded", "true");
+    if (!skill || !skillDetail) return;
+    placePanel(chip);
+    chips.forEach((c) => c.setAttribute("aria-pressed", String(c === chip)));
+    skillDetail.innerHTML = renderSkill(skill);
+    // Replay the fade-in for each newly picked skill.
+    skillDetail.style.animation = "none";
+    void skillDetail.offsetWidth;
+    skillDetail.style.animation = "";
   }
 
   chips.forEach((chip) => chip.addEventListener("click", () => showSkill(chip)));

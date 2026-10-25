@@ -67,6 +67,7 @@
   <script defer src="assets/js/flows.js"></script>
   <script defer src="assets/js/ask.js"></script>
   <script defer src="assets/js/main.js"></script>
+  <script defer src="assets/js/stack.js"></script>
 </head>
 
 <body>
@@ -107,88 +108,727 @@
     <symbol id="i-play" viewBox="0 0 24 24">
       <path fill="currentColor" stroke="none" d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z" />
     </symbol>
+    <symbol id="i-back" viewBox="0 0 24 24">
+      <path d="m15 18-6-6 6-6" />
+    </symbol>
+    <symbol id="i-fwd" viewBox="0 0 24 24">
+      <path d="m9 18 6-6-6-6" />
+    </symbol>
   </svg>
 
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="progress" aria-hidden="true"></div>
 
-  <header class="nav" id="nav">
-    <div class="wrap nav-inner">
-      <a class="brand" href="#top" aria-label="Dilip Kumar, back to top">
-        <img src="assets/images/avatar-96.webp" alt="" width="32" height="32">
-        <span>Dilip Kumar</span>
-      </a>
-      <nav class="nav-links" aria-label="Sections">
-        <a href="#experience">Experience</a>
-        <a href="#work">Work</a>
-        <a href="#skills">Skills</a>
-        <a href="#ask">Ask <span class="spark" aria-hidden="true">✦</span></a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <div class="nav-actions">
-        <button class="palette-btn" type="button" data-open-palette aria-label="Open command menu">
-          <svg class="i"><use href="#i-search" /></svg>
-          <span class="palette-btn-label">Search</span>
-          <kbd data-mod-key>Ctrl K</kbd>
-        </button>
-        <button class="icon-btn theme-toggle" type="button" id="theme-toggle" aria-label="Toggle light and dark theme">
-          <svg class="i icon-sun"><use href="#i-sun" /></svg>
-          <svg class="i icon-moon"><use href="#i-moon" /></svg>
-        </button>
-      </div>
-    </div>
-  </header>
-
   <main id="main">
     <!-- ============ HERO ============ -->
     <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="hero-bg" aria-hidden="true">
-        <div class="hero-glow"></div>
+      <div class="hero-vignette" aria-hidden="true"></div>
+      <div class="wrap hero-top">
+        <p class="status reveal" data-open-to-work><span class="status-dot"></span>Open to Backend &amp; AI roles</p>
+        <div class="hero-actions reveal">
+          <button class="palette-btn" type="button" data-open-palette aria-label="Open command menu">
+            <svg class="i"><use href="#i-search" /></svg>
+            <span class="palette-btn-label">Search</span>
+            <kbd data-mod-key>Ctrl K</kbd>
+          </button>
+          <button class="icon-btn theme-toggle" type="button" id="theme-toggle" aria-label="Toggle light and dark theme">
+            <svg class="i icon-sun"><use href="#i-sun" /></svg>
+            <svg class="i icon-moon"><use href="#i-moon" /></svg>
+          </button>
+        </div>
       </div>
-      <div class="wrap hero-grid">
-        <div class="hero-copy">
-          <p class="status reveal" data-open-to-work><span class="status-dot"></span>Open to Backend &amp; AI roles</p>
-          <div class="byline reveal" style="--d: .05s">
-            <img src="assets/images/avatar-96.webp" alt="Illustrated portrait of Dilip Kumar" width="48" height="48">
-            <div>
-              <p class="byline-name">Dilip Kumar</p>
-              <p class="byline-role">Backend &amp; AI Engineer · Hyderabad, India</p>
-            </div>
-          </div>
-          <h1 id="hero-title" class="reveal" style="--d: .1s">I build reliable backends and AI that <em>doesn't make
+      <div class="wrap hero-main">
+        <div class="hero-intro">
+          <p class="byline reveal" style="--d: .1s">
+            <img src="assets/images/avatar-96.webp" alt="" width="40" height="40">
+            <span><strong>Dilip Kumar</strong> · Backend &amp; AI Engineer · Hyderabad, India</span>
+          </p>
+          <h1 id="hero-title" class="reveal" style="--d: .15s">I build reliable backends and AI that <em>doesn't make
               things&nbsp;up.</em></h1>
-          <p class="lede reveal" style="--d: .15s">Two years shipping production systems with Python, FastAPI, Go and
-            Node.js: auth, payments, and a retrieval pipeline that has to quote its sources. Currently a Full-Stack
-            Engineer at Stryv.ai.</p>
-          <div class="hero-cta reveal" style="--d: .2s">
+          <p class="lede reveal" style="--d: .2s">Two years shipping production systems with Python, FastAPI, Go and
+            Node.js. Currently a Full-Stack Engineer at Stryv.ai.</p>
+        </div>
+        <div class="hero-side reveal" style="--d: .25s">
+          <div class="hero-cta">
             <a class="btn btn-primary" href="#work">See my work <svg class="i"><use href="#i-down" /></svg></a>
             <a class="btn btn-ghost" href="#ask">Interview my resume <span class="spark" aria-hidden="true">✦</span></a>
           </div>
-          <ul class="socials reveal" style="--d: .25s" aria-label="Elsewhere">
+          <ul class="socials" aria-label="Elsewhere">
             <li><a href="https://github.com/Dilip-Kashyp" target="_blank" rel="noopener"><svg class="i"><use href="#i-github" /></svg>GitHub</a></li>
             <li><a href="https://www.linkedin.com/in/dilip-kashyap/" target="_blank" rel="noopener"><svg class="i"><use href="#i-linkedin" /></svg>LinkedIn</a></li>
-            <li><a href="mailto:info@dilipkashyap.in"><svg class="i"><use href="#i-mail" /></svg>info@dilipkashyap.in</a></li>
+            <li><a href="mailto:info@dilipkashyap.in"><svg class="i"><use href="#i-mail" /></svg>Email</a></li>
           </ul>
         </div>
+      </div>
+      <!-- Timeline, played step by step like the request flows in the Work card (flows.js). -->
+      <div class="wrap hero-life reveal" style="--d: .3s">
+        <div class="flow" data-flow="life">
+          <div class="flow-bar">
+            <p class="mini-label">Timeline · 2003 → now</p>
+            <div class="flow-scenarios" role="group" aria-label="Timeline controls"></div>
+          </div>
+          <div class="flow-stage"></div>
+          <ol class="flow-log" aria-label="Timeline"></ol>
+          <p class="flow-static">2003 born → 2020 Class 10 → 2022 Class 12 → 2022 BCA at Kurukshetra University →
+            2024 first job, NexGen Elit → 2025 graduated → 2025 Full-Stack Engineer at Stryv.ai → next: open to
+            backend &amp; AI roles.</p>
+        </div>
+      </div>
+      <a class="scroll-cue" href="#about" aria-label="Scroll to the first card">
+        <span>Scroll</span><i aria-hidden="true"></i>
+      </a>
+    </section>
 
-        <div class="console reveal" style="--d: .2s" id="console">
-          <div class="console-bar">
-            <span class="console-lights" aria-hidden="true"><i></i><i></i><i></i></span>
-            <span class="console-title">dilipkashyap.in/api</span>
-            <button class="console-copy" type="button" data-copy-curl>
-              <svg class="i"><use href="#i-copy" /></svg><span>curl</span>
-            </button>
+    <!-- ============ CARD STACK ============
+         Each card is sticky. The next card slides up over it, and stack.js
+         tilts the arriving card and pushes the covered ones back. -->
+    <div class="stack" id="stack">
+
+      <!-- 01 ABOUT -->
+      <div class="stack-anchor" id="about"></div>
+      <section class="stack-card" aria-labelledby="about-title">
+        <div class="stack-card__inner card">
+          <header class="card-head">
+            <div>
+              <p class="kicker"><span>01</span>About</p>
+              <h2 id="about-title">A bit about <em>me</em></h2>
+            </div>
+            <p class="card-count" aria-hidden="true">01 / 06</p>
+          </header>
+          <div class="card-body">
+            <div class="about-grid">
+              <figure class="about-photo">
+                <img src="assets/images/avatar-320.webp" alt="Illustrated portrait of Dilip Kumar" width="320"
+                  height="320" loading="lazy">
+              </figure>
+              <div class="about-text">
+                <p>I studied computer applications at Kurukshetra University in Haryana and joined my first engineering
+                  team in June 2024, before I graduated. Since then I've spent two years at early-stage startups,
+                  owning auth, payments and AI features end to end.</p>
+                <p>I care about systems that behave predictably under load, APIs that are boring to integrate with, and
+                  AI features that can show their evidence. Next, I want a team with larger scale and stronger
+                  engineering practices. Meanwhile I practice DSA on NeetCode and LeetCode and work through system
+                  design.</p>
+              </div>
+            </div>
+            <div class="about-stats">
+              <div class="stat reveal">
+                <p class="stat-num" data-count="160" data-suffix="K">160K</p>
+                <p class="stat-label">documents a month through an AWS verification pipeline I contributed to</p>
+              </div>
+              <div class="stat reveal" style="--d: .06s">
+                <p class="stat-num" data-count="90" data-prefix="~" data-suffix="%">~90%</p>
+                <p class="stat-label">verification accuracy on that pipeline</p>
+              </div>
+              <div class="stat reveal" style="--d: .12s">
+                <p class="stat-num" data-count="100" data-suffix="K+">100K+</p>
+                <p class="stat-label">users on a CRM I helped build with a 20+ person team</p>
+              </div>
+              <div class="stat reveal" style="--d: .18s">
+                <p class="stat-num">2 yrs</p>
+                <p class="stat-label">shipping production backends, since June 2024</p>
+              </div>
+            </div>
+            <div class="facts">
+              <div class="fact">
+                <h3 class="mini-label">Education</h3>
+                <p><strong>BCA</strong>, Kurukshetra University</p>
+                <p class="muted">Govt. College Chhachhrauli · 2022 — 2025</p>
+              </div>
+              <div class="fact">
+                <h3 class="mini-label">Recognition</h3>
+                <p><strong>2nd place</strong>, state-level exhibition (150+ colleges)</p>
+                <p class="muted">College Roll of Honour</p>
+              </div>
+              <div class="fact">
+                <h3 class="mini-label">Certifications</h3>
+                <p><strong>Web Software Development</strong>, Altos FITECH 101 University</p>
+                <p class="muted">Node.js, Simplilearn</p>
+              </div>
+            </div>
           </div>
-          <div class="console-tabs" role="tablist" aria-label="API endpoints">
-            <button type="button" role="tab" aria-selected="true" aria-controls="console-panel" data-endpoint="me">/me</button>
-            <button type="button" role="tab" aria-selected="false" aria-controls="console-panel" data-endpoint="stack" tabindex="-1">/stack</button>
-            <button type="button" role="tab" aria-selected="false" aria-controls="console-panel" data-endpoint="projects" tabindex="-1">/projects</button>
-            <button type="button" role="tab" aria-selected="false" aria-controls="console-panel" data-endpoint="contact" tabindex="-1">/contact</button>
+        </div>
+      </section>
+
+      <!-- 02 EXPERIENCE -->
+      <div class="stack-anchor" id="experience"></div>
+      <section class="stack-card" aria-labelledby="experience-title">
+        <div class="stack-card__inner card" data-slider>
+          <header class="card-head">
+            <div>
+              <p class="kicker"><span>02</span>Experience</p>
+              <h2 id="experience-title">Where I've <em>shipped</em></h2>
+            </div>
+            <div class="slider-bar">
+              <div class="slider-tabs" role="tablist" aria-label="Roles">
+                <button type="button" role="tab" aria-selected="true" aria-controls="exp-stryv">Stryv.ai</button>
+                <button type="button" role="tab" aria-selected="false" aria-controls="exp-nexgen" tabindex="-1">NexGen Elit</button>
+              </div>
+              <div class="slider-arrows">
+                <span class="slider-count" data-slide-count>01 / 02</span>
+                <button class="icon-btn" type="button" data-slide-prev aria-label="Previous role">
+                  <svg class="i"><use href="#i-back" /></svg>
+                </button>
+                <button class="icon-btn" type="button" data-slide-next aria-label="Next role">
+                  <svg class="i"><use href="#i-fwd" /></svg>
+                </button>
+              </div>
+            </div>
+          </header>
+          <div class="card-body slider-track" tabindex="0" aria-label="Roles. Use the arrow keys to switch.">
+            <article class="slide xp" id="exp-stryv" role="tabpanel" aria-label="Stryv.ai">
+              <div class="xp-meta">
+                <p class="xp-logo" aria-hidden="true">S</p>
+                <p class="xp-dates">Jul 2025 — Present</p>
+                <p class="xp-where">Hyderabad</p>
+                <ul class="tags" aria-label="Technologies">
+                  <li>Python</li>
+                  <li>FastAPI</li>
+                  <li>PostgreSQL</li>
+                  <li>pgvector</li>
+                  <li>AWS</li>
+                  <li>JWT</li>
+                </ul>
+              </div>
+              <div class="xp-main">
+                <h3 class="xp-title">Full-Stack Engineer <span>@ Stryv.ai</span></h3>
+                <p class="xp-summary">Backend and AI features for a vendor-compliance platform.</p>
+                <ul class="role-points">
+                  <li>Building the <strong>AI automation module</strong>: hybrid vector + keyword retrieval on
+                    PostgreSQL/pgvector, cross-encoder reranking, verbatim-quote validation, and async pipelines with
+                    human-in-the-loop approval. <a class="inline-link" href="#case-rag">See how it works</a></li>
+                  <li>Built <strong>JWT authentication</strong> with protected routes, plus OTP password recovery:
+                    hashed, expiring OTPs with resend limits and protection against repeated attempts.</li>
+                  <li>Contributed to an <strong>AWS document-verification pipeline</strong> that processed
+                    <strong>160K documents in a month</strong> at ~90% verification accuracy.</li>
+                  <li>Own the backend for <strong>assessment workflows</strong>: response management, category progress
+                    tracking and trust-score calculation.</li>
+                  <li>Developed a <strong>CRM</strong> for sales, leads and customer interactions serving
+                    <strong>100K+ users</strong>, as part of a 20+ person cross-functional team.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="slide xp" id="exp-nexgen" role="tabpanel" aria-label="NexGen Elit">
+              <div class="xp-meta">
+                <p class="xp-logo" aria-hidden="true">N</p>
+                <p class="xp-dates">Jun 2024 — Jul 2025</p>
+                <p class="xp-where">Remote</p>
+                <ul class="tags" aria-label="Technologies">
+                  <li>Node.js</li>
+                  <li>Express</li>
+                  <li>Razorpay</li>
+                  <li>REST APIs</li>
+                  <li>Google Meet</li>
+                </ul>
+              </div>
+              <div class="xp-main">
+                <h3 class="xp-title">Full-Stack Engineer <span>@ NexGen Elit</span></h3>
+                <p class="xp-summary">My first engineering team, joined before I graduated.</p>
+                <ul class="role-points">
+                  <li>Built a <strong>job-portal backend</strong> where recruiters post roles and students apply through
+                    skill-based assessments, with a dual-sided subscription revenue model.</li>
+                  <li>Integrated <strong>Razorpay</strong> for student test payments and recruiter job-posting
+                    subscriptions.</li>
+                  <li>Built the <strong>Node.js/Express backend</strong> for a virtual fitness platform: course
+                    browsing, an interactive dashboard and integrated Google Meet sessions.</li>
+                </ul>
+              </div>
+            </article>
           </div>
-          <div class="console-body" id="console-panel" role="tabpanel" aria-live="polite">
-            <p class="console-cmd"><span class="console-prompt">$</span> <span data-console-cmd>curl -s dilipkashyap.in/api/me.json</span></p>
-            <p class="console-status" data-console-status><span class="c-ok">200 OK</span> · application/json</p>
-            <pre class="console-json" tabindex="0"><code data-console-json>{
+        </div>
+      </section>
+
+      <!-- 03 WORK -->
+      <div class="stack-anchor" id="work"></div>
+      <section class="stack-card" aria-labelledby="work-title">
+        <div class="stack-card__inner card" data-slider>
+          <header class="card-head">
+            <div>
+              <p class="kicker"><span>03</span>Selected work</p>
+              <h2 id="work-title">Systems you can <em>step through</em></h2>
+            </div>
+            <div class="slider-bar">
+              <div class="slider-tabs" role="tablist" aria-label="Projects">
+                <button type="button" role="tab" aria-selected="true" aria-controls="case-rag">Grounded RAG</button>
+                <button type="button" role="tab" aria-selected="false" aria-controls="case-jugaad" tabindex="-1">Jugaad Link</button>
+                <button type="button" role="tab" aria-selected="false" aria-controls="case-atlas" tabindex="-1">Atlas</button>
+                <button type="button" role="tab" aria-selected="false" aria-controls="case-contrihub" tabindex="-1">ContriHub</button>
+                <button type="button" role="tab" aria-selected="false" aria-controls="also" tabindex="-1">More</button>
+              </div>
+              <div class="slider-arrows">
+                <span class="slider-count" data-slide-count>01 / 05</span>
+                <button class="icon-btn" type="button" data-slide-prev aria-label="Previous project">
+                  <svg class="i"><use href="#i-back" /></svg>
+                </button>
+                <button class="icon-btn" type="button" data-slide-next aria-label="Next project">
+                  <svg class="i"><use href="#i-fwd" /></svg>
+                </button>
+              </div>
+            </div>
+          </header>
+          <div class="card-body slider-track" tabindex="0" aria-label="Projects. Use the arrow keys to switch.">
+            <article class="slide proj" id="case-rag" role="tabpanel" aria-labelledby="case-rag-title">
+              <header class="proj-head">
+                <div class="proj-intro">
+                  <p class="case-kicker"><span class="case-num">01</span>Work · Stryv.ai</p>
+                  <h3 class="proj-title" id="case-rag-title">Grounded retrieval for compliance automation</h3>
+                  <p class="proj-line">An AI module that only accepts an answer it can back with a verbatim quote
+                    from the source document.</p>
+                </div>
+                <ul class="tags" aria-label="Technologies">
+                  <li>Python</li>
+                  <li>FastAPI</li>
+                  <li>pgvector</li>
+                  <li>Cross-encoder</li>
+                  <li>Async pipelines</li>
+                </ul>
+              </header>
+              <div class="proj-tabs" role="tablist" aria-label="Grounded retrieval details" data-tabs>
+                <button type="button" role="tab" id="rag-tab-flow" aria-controls="rag-flow" aria-selected="true"><svg class="i"><use href="#i-play" /></svg>Request flow</button>
+                <button type="button" role="tab" id="rag-tab-why" aria-controls="rag-why" aria-selected="false" tabindex="-1">Decisions</button>
+                <button type="button" role="tab" id="rag-tab-what" aria-controls="rag-what" aria-selected="false" tabindex="-1">What I'm building</button>
+              </div>
+              <div class="proj-panel" role="tabpanel" id="rag-flow" aria-labelledby="rag-tab-flow">
+                <div class="flow" data-flow="rag">
+                  <div class="flow-bar">
+                    <div class="flow-scenarios" role="group" aria-label="Scenarios"></div>
+                  </div>
+                  <div class="flow-stage"></div>
+                  <ol class="flow-log" aria-live="polite" aria-label="Request log"></ol>
+                  <p class="flow-static">Question → keyword search + vector search (pgvector) → cross-encoder rerank →
+                    LLM draft with quote → verbatim-quote check → human approval.</p>
+                </div>
+              </div>
+              <div class="proj-panel" role="tabpanel" id="rag-why" aria-labelledby="rag-tab-why">
+                <ul class="decisions decisions-grid">
+                  <li><strong>Hybrid retrieval.</strong> Vectors catch paraphrases. Keyword search catches the exact
+                    clause names and numbers that embeddings blur.</li>
+                  <li><strong>Rerank before generating.</strong> A cross-encoder scores every (question, passage) pair,
+                    so the strongest evidence reaches the model first.</li>
+                  <li><strong>Verify, then involve a human.</strong> A quote that isn't in the source verbatim fails
+                    validation. Validated answers still wait for human approval.</li>
+                </ul>
+              </div>
+              <div class="proj-panel" role="tabpanel" id="rag-what" aria-labelledby="rag-tab-what">
+                <p class="proj-text">The AI automation module of a vendor-compliance platform: retrieval, reranking,
+                  quote validation and an async approval pipeline, in FastAPI on PostgreSQL with pgvector.</p>
+              </div>
+            </article>
+
+            <article class="slide proj" id="case-jugaad" role="tabpanel" aria-labelledby="case-jugaad-title">
+              <header class="proj-head">
+                <div class="proj-intro">
+                  <p class="case-kicker"><span class="case-num">02</span>Side project · Live</p>
+                  <h3 class="proj-title" id="case-jugaad-title">Jugaad Link</h3>
+                  <p class="proj-line">A URL shortener with Redis-cached redirects, password-protected and expiring
+                    links, and per-link analytics.</p>
+                </div>
+                <div class="proj-side">
+                  <div class="case-links">
+                    <a class="link-pill" href="https://jugaadlink.vercel.app" target="_blank" rel="noopener">Live <svg class="i"><use href="#i-arrow" /></svg></a>
+                    <a class="link-pill" href="https://github.com/Dilip-Kashyp/jugaadlink-be" target="_blank" rel="noopener">Backend <svg class="i"><use href="#i-arrow" /></svg></a>
+                    <a class="link-pill" href="https://github.com/Dilip-Kashyp/Jugaadlink" target="_blank" rel="noopener">Frontend <svg class="i"><use href="#i-arrow" /></svg></a>
+                  </div>
+                  <ul class="tags" aria-label="Technologies">
+                    <li>Go</li>
+                    <li>Gin</li>
+                    <li>PostgreSQL</li>
+                    <li>Redis</li>
+                    <li>Docker</li>
+                    <li>Next.js</li>
+                  </ul>
+                </div>
+              </header>
+              <div class="proj-tabs" role="tablist" aria-label="Jugaad Link details" data-tabs>
+                <button type="button" role="tab" id="jugaad-tab-flow" aria-controls="jugaad-flow" aria-selected="true"><svg class="i"><use href="#i-play" /></svg>Request flow</button>
+                <button type="button" role="tab" id="jugaad-tab-why" aria-controls="jugaad-why" aria-selected="false" tabindex="-1">Decisions</button>
+                <button type="button" role="tab" id="jugaad-tab-what" aria-controls="jugaad-what" aria-selected="false" tabindex="-1">What I built</button>
+              </div>
+              <div class="proj-panel" role="tabpanel" id="jugaad-flow" aria-labelledby="jugaad-tab-flow">
+                <div class="flow" data-flow="jugaad">
+                  <div class="flow-bar">
+                    <div class="flow-scenarios" role="group" aria-label="Scenarios"></div>
+                  </div>
+                  <div class="flow-stage"></div>
+                  <ol class="flow-log" aria-live="polite" aria-label="Request log"></ol>
+                  <p class="flow-static">Browser → Gin API → Redis (hit: 302 redirect) or PostgreSQL (miss: rule
+                    checks, 302, then cache).</p>
+                </div>
+              </div>
+              <div class="proj-panel" role="tabpanel" id="jugaad-why" aria-labelledby="jugaad-tab-why">
+                <ul class="decisions decisions-grid">
+                  <li><strong>Cache only plain links.</strong> Password, expiry and click-limit rules must run on every
+                    visit. Caching those redirects would silently bypass them.</li>
+                  <li><strong>Record clicks asynchronously.</strong> Analytics never sits on the redirect's critical
+                    path.</li>
+                  <li><strong>Fail to a friendly page.</strong> Disabled, expired and over-limit links redirect to an
+                    explanation instead of a bare error.</li>
+                </ul>
+              </div>
+              <div class="proj-panel" role="tabpanel" id="jugaad-what" aria-labelledby="jugaad-tab-what">
+                <p class="proj-text">A Go (Gin, GORM) API on PostgreSQL and Redis with JWT auth, custom slugs, QR codes,
+                  guest sessions, a Chrome extension, and click analytics by device, browser, country and referrer.
+                  Next.js frontend.</p>
+              </div>
+            </article>
+
+            <article class="slide proj" id="case-atlas" role="tabpanel" aria-labelledby="case-atlas-title">
+              <header class="proj-head">
+                <div class="proj-intro">
+                  <p class="case-kicker"><span class="case-num">03</span>Side project</p>
+                  <h3 class="proj-title" id="case-atlas-title">Atlas</h3>
+                  <p class="proj-line">A multi-tenant Slack and GitHub assistant: OAuth 2.0, per-workspace webhooks, and
+                    a Gemini agent that calls tools.</p>
+                </div>
+                <div class="proj-side">
+                  <div class="case-links">
+                    <a class="link-pill" href="https://github.com/Dilip-Kashyp/Atles" target="_blank" rel="noopener">Code <svg class="i"><use href="#i-arrow" /></svg></a>
+                  </div>
+                  <ul class="tags" aria-label="Technologies">
+                    <li>Python</li>
+                    <li>FastAPI</li>
+                    <li>PostgreSQL</li>
+                    <li>Gemini</li>
+                    <li>OAuth 2.0</li>
+                    <li>Next.js</li>
+                  </ul>
+                </div>
+              </header>
+              <div class="proj-tabs" role="tablist" aria-label="Atlas details" data-tabs>
+                <button type="button" role="tab" id="atlas-tab-flow" aria-controls="atlas-flow" aria-selected="true"><svg class="i"><use href="#i-play" /></svg>Request flow</button>
+                <button type="button" role="tab" id="atlas-tab-why" aria-controls="atlas-why" aria-selected="false" tabindex="-1">Decisions</button>
+                <button type="button" role="tab" id="atlas-tab-what" aria-controls="atlas-what" aria-selected="false" tabindex="-1">What I built</button>
+              </div>
+              <div class="proj-panel" role="tabpanel" id="atlas-flow" aria-labelledby="atlas-tab-flow">
+                <div class="flow" data-flow="atlas">
+                  <div class="flow-bar">
+                    <div class="flow-scenarios" role="group" aria-label="Scenarios"></div>
+                  </div>
+                  <div class="flow-stage"></div>
+                  <ol class="flow-log" aria-live="polite" aria-label="Request log"></ol>
+                  <p class="flow-static">Slack event → FastAPI → tenant lookup and token decryption in PostgreSQL →
+                    Gemini function call → GitHub tool → reply in thread.</p>
+                </div>
+              </div>
+              <div class="proj-panel" role="tabpanel" id="atlas-why" aria-labelledby="atlas-tab-why">
+                <ul class="decisions decisions-grid">
+                  <li><strong>Encrypt provider tokens at rest.</strong> Slack and GitHub tokens are Fernet-encrypted in
+                    PostgreSQL and decrypted only for the tenant that sent the event.</li>
+                  <li><strong>Rotate refresh tokens.</strong> They're stored hashed, rotated on every refresh and kept in
+                    HTTP-only cookies.</li>
+                  <li><strong>Modular monolith first.</strong> One deployable with clear module boundaries (auth,
+                    integrations, orchestrator), to split only when scale asks for it.</li>
+                </ul>
+              </div>
+              <div class="proj-panel" role="tabpanel" id="atlas-what" aria-labelledby="atlas-tab-what">
+                <p class="proj-text">A FastAPI modular monolith with a Next.js 15 dashboard: OAuth 2.0 login (Google,
+                  GitHub, Slack), organization and workspace tenancy, per-tenant webhook ingestion, and a Gemini
+                  orchestrator with function calling and a tool dispatcher. PostgreSQL via async SQLAlchemy and
+                  Alembic.</p>
+              </div>
+            </article>
+
+            <article class="slide proj" id="case-contrihub" role="tabpanel" aria-labelledby="case-contrihub-title">
+              <header class="proj-head">
+                <div class="proj-intro">
+                  <p class="case-kicker"><span class="case-num">04</span>Side project · Live</p>
+                  <h3 class="proj-title" id="case-contrihub-title">ContriHub</h3>
+                  <p class="proj-line">Helps developers find beginner-friendly open-source projects, with AI repo
+                    explanations and learning roadmaps.</p>
+                </div>
+                <div class="proj-side">
+                  <div class="case-links">
+                    <a class="link-pill" href="https://contri-hub.vercel.app" target="_blank" rel="noopener">Live <svg class="i"><use href="#i-arrow" /></svg></a>
+                    <a class="link-pill" href="https://github.com/Dilip-Kashyp/ContriHub" target="_blank" rel="noopener">Code <svg class="i"><use href="#i-arrow" /></svg></a>
+                  </div>
+                  <ul class="tags" aria-label="Technologies">
+                    <li>Go</li>
+                    <li>Gin</li>
+                    <li>PostgreSQL</li>
+                    <li>Redis</li>
+                    <li>Groq</li>
+                    <li>Next.js</li>
+                  </ul>
+                </div>
+              </header>
+              <div class="proj-tabs" role="tablist" aria-label="ContriHub details" data-tabs>
+                <button type="button" role="tab" id="contrihub-tab-flow" aria-controls="contrihub-flow" aria-selected="true"><svg class="i"><use href="#i-play" /></svg>Request flow</button>
+                <button type="button" role="tab" id="contrihub-tab-why" aria-controls="contrihub-why" aria-selected="false" tabindex="-1">Decisions</button>
+                <button type="button" role="tab" id="contrihub-tab-what" aria-controls="contrihub-what" aria-selected="false" tabindex="-1">What I built</button>
+              </div>
+              <div class="proj-panel" role="tabpanel" id="contrihub-flow" aria-labelledby="contrihub-tab-flow">
+                <div class="flow" data-flow="contrihub">
+                  <div class="flow-bar">
+                    <div class="flow-scenarios" role="group" aria-label="Scenarios"></div>
+                  </div>
+                  <div class="flow-stage"></div>
+                  <ol class="flow-log" aria-live="polite" aria-label="Request log"></ol>
+                  <p class="flow-static">Next.js → Go API → Redis rate limit → Redis cache or GitHub API → Groq LLM →
+                    200, or 429 when the limit is hit.</p>
+                </div>
+              </div>
+              <div class="proj-panel" role="tabpanel" id="contrihub-why" aria-labelledby="contrihub-tab-why">
+                <ul class="decisions decisions-grid">
+                  <li><strong>Rate-limit every AI endpoint.</strong> Redis limits by IP and by token, so one client
+                    can't burn the LLM budget or the GitHub quota.</li>
+                  <li><strong>Cache the GitHub proxy.</strong> Repeat lookups are served from Redis instead of spending
+                    GitHub API calls.</li>
+                </ul>
+              </div>
+              <div class="proj-panel" role="tabpanel" id="contrihub-what" aria-labelledby="contrihub-tab-what">
+                <p class="proj-text">A Go (Gin, GORM) backend on PostgreSQL and Redis: GitHub OAuth, a caching GitHub
+                  API proxy, Groq-powered repo explanations, roadmaps and project matching, and persistent AI chat
+                  history. Next.js frontend with filters for language, labels like good-first-issue, topics and
+                  stars.</p>
+              </div>
+            </article>
+
+            <article class="slide proj" id="also" role="tabpanel" aria-labelledby="also-title">
+              <header class="proj-head">
+                <div class="proj-intro">
+                  <p class="case-kicker"><span class="case-num">05</span>More</p>
+                  <h3 class="proj-title" id="also-title">Also built</h3>
+                  <p class="proj-line">A prototype, daily practice, and everything else.</p>
+                </div>
+              </header>
+              <div class="more-grid">
+                <div class="more-item">
+                  <p class="mini-label">Prototype</p>
+                  <h4>Document extraction pipeline</h4>
+                  <p>Serverless OCR + LLM extraction on AWS: Textract for OCR, Bedrock for structured fields. It was
+                    never deployed to production.</p>
+                  <ul class="tags" aria-label="Technologies">
+                    <li>Python</li>
+                    <li>Textract</li>
+                    <li>Bedrock</li>
+                  </ul>
+                </div>
+                <div class="more-item">
+                  <p class="mini-label">Practice</p>
+                  <h4>DSA in C++</h4>
+                  <p>Regular NeetCode and LeetCode practice, with every submission public.</p>
+                  <a class="link-pill" href="https://github.com/Dilip-Kashyp/neetcode-submissions" target="_blank" rel="noopener">Submissions <svg class="i"><use href="#i-arrow" /></svg></a>
+                </div>
+                <div class="more-item">
+                  <p class="mini-label">Everything else</p>
+                  <h4>On GitHub</h4>
+                  <p>Earlier projects, experiments and the source of this site.</p>
+                  <a class="link-pill" href="https://github.com/Dilip-Kashyp?tab=repositories" target="_blank" rel="noopener">Dilip-Kashyp <svg class="i"><use href="#i-arrow" /></svg></a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 SKILLS -->
+      <div class="stack-anchor" id="skills"></div>
+      <section class="stack-card" aria-labelledby="skills-title">
+        <div class="stack-card__inner card">
+          <header class="card-head">
+            <div>
+              <p class="kicker"><span>04</span>Skills</p>
+              <h2 id="skills-title">Every skill, <em>with proof</em></h2>
+            </div>
+            <p class="card-count" aria-hidden="true">04 / 06</p>
+          </header>
+          <div class="card-body skills-body">
+            <div class="skills-grid">
+              <div class="skill-group">
+                <h3 class="mini-label">Languages</h3>
+                <div class="chips">
+                  <button class="chip" type="button" data-skill="python">Python <span class="chip-yrs">2y</span></button>
+                  <button class="chip" type="button" data-skill="go">Go <span class="chip-yrs">1y</span></button>
+                  <button class="chip" type="button" data-skill="typescript">TypeScript</button>
+                  <button class="chip" type="button" data-skill="javascript">JavaScript</button>
+                  <button class="chip" type="button" data-skill="sql">SQL</button>
+                  <button class="chip" type="button" data-skill="cpp">C++</button>
+                </div>
+              </div>
+              <div class="skill-group">
+                <h3 class="mini-label">Backend</h3>
+                <div class="chips">
+                  <button class="chip" type="button" data-skill="fastapi">FastAPI <span class="chip-yrs">1.5y</span></button>
+                  <button class="chip" type="button" data-skill="nodejs">Node.js <span class="chip-yrs">2y</span></button>
+                  <button class="chip" type="button" data-skill="express">Express</button>
+                  <button class="chip" type="button" data-skill="gin">Gin</button>
+                  <button class="chip" type="button" data-skill="gorm">GORM</button>
+                  <button class="chip" type="button" data-skill="sqlalchemy">SQLAlchemy</button>
+                  <button class="chip" type="button" data-skill="rest">REST APIs</button>
+                </div>
+              </div>
+              <div class="skill-group">
+                <h3 class="mini-label">AI &amp; retrieval <span class="chip-yrs">1.5y</span></h3>
+                <div class="chips">
+                  <button class="chip" type="button" data-skill="rag">RAG</button>
+                  <button class="chip" type="button" data-skill="hybrid">Hybrid search</button>
+                  <button class="chip" type="button" data-skill="rerank">Reranking</button>
+                  <button class="chip" type="button" data-skill="pgvector">pgvector</button>
+                  <button class="chip" type="button" data-skill="gemini">Gemini</button>
+                  <button class="chip" type="button" data-skill="groq">Groq</button>
+                  <button class="chip" type="button" data-skill="bedrock">AWS Bedrock</button>
+                  <button class="chip" type="button" data-skill="textract">AWS Textract</button>
+                </div>
+              </div>
+              <div class="skill-group">
+                <h3 class="mini-label">Data &amp; cloud</h3>
+                <div class="chips">
+                  <button class="chip" type="button" data-skill="postgresql">PostgreSQL <span class="chip-yrs">2y</span></button>
+                  <button class="chip" type="button" data-skill="redis">Redis</button>
+                  <button class="chip" type="button" data-skill="aws">AWS <span class="chip-yrs">1.5y</span></button>
+                  <button class="chip" type="button" data-skill="docker">Docker <span class="chip-yrs">1.5y</span></button>
+                </div>
+              </div>
+              <div class="skill-group">
+                <h3 class="mini-label">Backend patterns</h3>
+                <div class="chips">
+                  <button class="chip" type="button" data-skill="caching">Caching</button>
+                  <button class="chip" type="button" data-skill="ratelimit">Rate limiting</button>
+                  <button class="chip" type="button" data-skill="auth">Auth (JWT, OAuth 2.0)</button>
+                  <button class="chip" type="button" data-skill="tenancy">Multi-tenancy</button>
+                  <button class="chip" type="button" data-skill="async">Async pipelines</button>
+                  <button class="chip" type="button" data-skill="payments">Payments</button>
+                </div>
+              </div>
+              <div class="skill-group">
+                <h3 class="mini-label">Frontend</h3>
+                <div class="chips">
+                  <button class="chip" type="button" data-skill="nextjs">React / Next.js <span class="chip-yrs">2y</span></button>
+                  <button class="chip" type="button" data-skill="tailwind">Tailwind CSS</button>
+                </div>
+              </div>
+            </div>
+            <aside class="skill-panel" aria-label="Where the selected skill was used">
+              <p class="mini-label">Where I've used it</p>
+              <div class="skill-detail" id="skill-detail" aria-live="polite"></div>
+              <p class="also-familiar"><span class="mini-label">Also worked with</span>MongoDB · Qdrant · FAISS ·
+                SentenceTransformers · Azure OpenAI · Azure Document Intelligence · CloudFormation · Nginx · Linux ·
+                GitHub Actions · Redux</p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 ASK -->
+      <div class="stack-anchor" id="ask"></div>
+      <section class="stack-card" aria-labelledby="ask-title">
+        <div class="stack-card__inner card">
+          <header class="card-head">
+            <div>
+              <p class="kicker"><span>05</span>Ask</p>
+              <h2 id="ask-title">Interview my <em>resume</em></h2>
+            </div>
+            <p class="card-count" aria-hidden="true">05 / 06</p>
+          </header>
+          <div class="card-body ask-grid">
+            <div class="ask-explain">
+              <p class="section-sub">A tiny retrieval engine that runs entirely in your browser, over facts I wrote
+                about myself. No LLM and no API key. If it can't find a grounded answer, it says so instead of
+                guessing.</p>
+              <ol class="how">
+                <li><span class="how-n">1</span>
+                  <p>Tokenize your question and fix typos against the vocabulary</p>
+                </li>
+                <li><span class="how-n">2</span>
+                  <p>Score <b data-kb-count>50</b> hand-written facts with BM25</p>
+                </li>
+                <li><span class="how-n">3</span>
+                  <p>Blend in trigram similarity for fuzzy matches</p>
+                </li>
+                <li><span class="how-n">4</span>
+                  <p>Below the confidence threshold? Say “I don't know”</p>
+                </li>
+              </ol>
+            </div>
+
+            <div class="chat">
+              <div class="chat-head">
+                <img src="assets/images/avatar-96.webp" alt="" width="36" height="36">
+                <div>
+                  <p class="chat-name">resume.bot</p>
+                  <p class="chat-sub">answers only from Dilip's resume</p>
+                </div>
+                <span class="chat-badge">BM25 + trigram</span>
+              </div>
+              <div class="chat-log" id="chat-log" role="log" aria-live="polite" aria-label="Conversation">
+                <div class="msg msg-bot">
+                  <p>Hi! Ask me about Dilip's experience, projects, stack or availability. Try a suggestion below or
+                    type your own question.</p>
+                </div>
+              </div>
+              <div class="chat-suggest" id="chat-suggest" aria-label="Suggested questions">
+                <button type="button" class="pill">What do you do at Stryv?</button>
+                <button type="button" class="pill">How do you stop AI hallucinating?</button>
+                <button type="button" class="pill">Have you used Redis?</button>
+                <button type="button" class="pill">Open to relocation?</button>
+                <button type="button" class="pill">Why should we hire you?</button>
+                <button type="button" class="pill">How does this chat work?</button>
+              </div>
+              <form class="chat-form" id="chat-form">
+                <label class="sr-only" for="chat-input">Your question</label>
+                <input id="chat-input" name="q" type="text" autocomplete="off" maxlength="200"
+                  placeholder="e.g. Have you worked with FastAPI?">
+                <button class="btn btn-primary btn-sm" type="submit">Ask</button>
+              </form>
+              <noscript>
+                <p class="chat-noscript">The chat needs JavaScript. Everything it knows is already on this page.</p>
+              </noscript>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 CONTACT -->
+      <div class="stack-anchor" id="contact"></div>
+      <section class="stack-card stack-card--contact" aria-labelledby="contact-title">
+        <div class="stack-card__inner card">
+          <header class="card-head">
+            <div>
+              <p class="kicker"><span>06</span>Contact</p>
+            </div>
+            <p class="card-count" aria-hidden="true">06 / 06</p>
+          </header>
+          <div class="card-body contact-body">
+            <div class="contact-copy">
+              <h2 id="contact-title">Have a backend or AI role in mind? <em>Let's talk.</em></h2>
+              <div class="contact-main">
+                <a class="contact-email" href="mailto:info@dilipkashyap.in">info@dilipkashyap.in</a>
+                <button class="btn btn-ghost btn-sm" type="button" data-copy="info@dilipkashyap.in">
+                  <svg class="i"><use href="#i-copy" /></svg>Copy
+                </button>
+              </div>
+              <ul class="contact-meta">
+                <li>Usually replies within 24 hours</li>
+                <li>Hyderabad, India · <span data-clock>IST</span></li>
+                <li>Open to Bengaluru, remote or relocation</li>
+              </ul>
+              <div class="contact-links">
+                <a class="btn btn-ghost" href="https://www.linkedin.com/in/dilip-kashyap/" target="_blank" rel="noopener"><svg class="i"><use href="#i-linkedin" /></svg>LinkedIn</a>
+                <a class="btn btn-ghost" href="https://github.com/Dilip-Kashyp" target="_blank" rel="noopener"><svg class="i"><use href="#i-github" /></svg>GitHub</a>
+              </div>
+            </div>
+
+            <div class="contact-api">
+              <p class="mini-label">Prefer JSON? curl it</p>
+              <div class="console" id="console">
+                <div class="console-bar">
+                  <span class="console-lights" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <span class="console-title">dilipkashyap.in/api</span>
+                  <button class="console-copy" type="button" data-copy-curl>
+                    <svg class="i"><use href="#i-copy" /></svg><span>curl</span>
+                  </button>
+                </div>
+                <div class="console-tabs" role="tablist" aria-label="API endpoints">
+                  <button type="button" role="tab" aria-selected="true" aria-controls="console-panel" data-endpoint="me">/me</button>
+                  <button type="button" role="tab" aria-selected="false" aria-controls="console-panel" data-endpoint="stack" tabindex="-1">/stack</button>
+                  <button type="button" role="tab" aria-selected="false" aria-controls="console-panel" data-endpoint="projects" tabindex="-1">/projects</button>
+                  <button type="button" role="tab" aria-selected="false" aria-controls="console-panel" data-endpoint="contact" tabindex="-1">/contact</button>
+                </div>
+                <div class="console-body" id="console-panel" role="tabpanel" aria-live="polite">
+                  <p class="console-cmd"><span class="console-prompt">$</span> <span data-console-cmd>curl -s dilipkashyap.in/api/me.json</span></p>
+                  <p class="console-status" data-console-status><span class="c-ok">200 OK</span> · application/json</p>
+                  <pre class="console-json" tabindex="0"><code data-console-json>{
   "name": "Dilip Kumar",
   "role": "Backend & AI Engineer",
   "experience_years": 2,
@@ -202,560 +842,14 @@
   "work_locations": ["Hyderabad", "Bengaluru", "Remote"],
   "focus": ["APIs & auth", "Caching & rate limiting", "RAG pipelines"]
 }</code></pre>
-          </div>
-          <p class="console-foot">Real static JSON served by this site. Try it in your terminal.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ IMPACT ============ -->
-    <section class="impact" aria-label="Impact in numbers">
-      <div class="wrap impact-grid">
-        <div class="stat reveal">
-          <p class="stat-num" data-count="160" data-suffix="K">160K</p>
-          <p class="stat-label">documents a month through an AWS verification pipeline I contributed to</p>
-        </div>
-        <div class="stat reveal" style="--d: .06s">
-          <p class="stat-num" data-count="90" data-prefix="~" data-suffix="%">~90%</p>
-          <p class="stat-label">verification accuracy on that pipeline</p>
-        </div>
-        <div class="stat reveal" style="--d: .12s">
-          <p class="stat-num" data-count="100" data-suffix="K+">100K+</p>
-          <p class="stat-label">users on a CRM I helped build with a 20+ person team</p>
-        </div>
-        <div class="stat reveal" style="--d: .18s">
-          <p class="stat-num">2 yrs</p>
-          <p class="stat-label">shipping production backends, since June 2024</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ EXPERIENCE ============ -->
-    <section class="section" id="experience" aria-labelledby="experience-title">
-      <div class="wrap">
-        <header class="section-head reveal">
-          <p class="kicker"><span>01</span>Experience</p>
-          <h2 id="experience-title">Where I've <em>shipped</em></h2>
-        </header>
-
-        <ol class="timeline">
-          <li class="role reveal" id="exp-stryv">
-            <div class="role-when">
-              <p class="role-dates">Jul 2025 — Present</p>
-              <p class="role-where">Hyderabad</p>
-            </div>
-            <div class="role-card card">
-              <h3 class="role-title">Full-Stack Engineer <span class="role-at">@ Stryv.ai</span></h3>
-              <p class="role-summary">Backend and AI features for a vendor-compliance platform.</p>
-              <ul class="role-points">
-                <li>Building the <strong>AI automation module</strong>: hybrid vector + keyword retrieval on
-                  PostgreSQL/pgvector, cross-encoder reranking, verbatim-quote validation, and async pipelines with
-                  human-in-the-loop approval. <a class="inline-link" href="#case-rag">See how it works</a></li>
-                <li>Built <strong>JWT authentication</strong> with protected routes, plus OTP password recovery: hashed,
-                  expiring OTPs with resend limits and protection against repeated attempts.</li>
-                <li>Contributed to an <strong>AWS document-verification pipeline</strong> that processed
-                  <strong>160K documents in a month</strong> at ~90% verification accuracy.</li>
-                <li>Own the backend for <strong>assessment workflows</strong>: response management, category progress
-                  tracking and trust-score calculation.</li>
-                <li>Developed a <strong>CRM</strong> for sales, leads and customer interactions serving
-                  <strong>100K+ users</strong>, as part of a 20+ person cross-functional team.</li>
-              </ul>
-              <ul class="tags" aria-label="Technologies">
-                <li>Python</li>
-                <li>FastAPI</li>
-                <li>PostgreSQL</li>
-                <li>pgvector</li>
-                <li>AWS</li>
-                <li>JWT</li>
-              </ul>
-            </div>
-          </li>
-
-          <li class="role reveal" id="exp-nexgen">
-            <div class="role-when">
-              <p class="role-dates">Jun 2024 — Jul 2025</p>
-              <p class="role-where">Remote</p>
-            </div>
-            <div class="role-card card">
-              <h3 class="role-title">Full-Stack Engineer <span class="role-at">@ NexGen Elit</span></h3>
-              <p class="role-summary">My first engineering team, joined before I graduated.</p>
-              <ul class="role-points">
-                <li>Built a <strong>job-portal backend</strong> where recruiters post roles and students apply through
-                  skill-based assessments, with a dual-sided subscription revenue model.</li>
-                <li>Integrated <strong>Razorpay</strong> for student test payments and recruiter job-posting
-                  subscriptions.</li>
-                <li>Built the <strong>Node.js/Express backend</strong> for a virtual fitness platform: course browsing,
-                  an interactive dashboard and integrated Google Meet sessions.</li>
-              </ul>
-              <ul class="tags" aria-label="Technologies">
-                <li>Node.js</li>
-                <li>Express</li>
-                <li>Razorpay</li>
-                <li>REST APIs</li>
-                <li>Google Meet</li>
-              </ul>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ============ WORK ============ -->
-    <section class="section" id="work" aria-labelledby="work-title">
-      <div class="wrap">
-        <header class="section-head reveal">
-          <p class="kicker"><span>02</span>Selected work</p>
-          <h2 id="work-title">Systems you can <em>step through</em></h2>
-          <p class="section-sub">Each diagram is a simplified replay of a real request path from the project's code.
-            Pick a scenario and follow the request through the system.</p>
-        </header>
-
-        <article class="case card reveal" id="case-rag" aria-labelledby="case-rag-title">
-          <div class="case-head">
-            <div>
-              <p class="case-kicker"><span class="case-num">01</span>Work · Stryv.ai</p>
-              <h3 class="case-title" id="case-rag-title">Grounded retrieval for compliance automation</h3>
-              <p class="case-line">An AI module that only accepts an answer it can back with a verbatim quote from
-                the source document.</p>
-            </div>
-          </div>
-          <div class="case-body">
-            <div>
-              <h4 class="mini-label">What I'm building</h4>
-              <p>The AI automation module of a vendor-compliance platform: retrieval, reranking, quote validation and
-                an async approval pipeline, in FastAPI on PostgreSQL with pgvector.</p>
-              <ul class="tags" aria-label="Technologies">
-                <li>Python</li>
-                <li>FastAPI</li>
-                <li>PostgreSQL</li>
-                <li>pgvector</li>
-                <li>Cross-encoder</li>
-                <li>Async pipelines</li>
-              </ul>
-            </div>
-            <div>
-              <h4 class="mini-label">Engineering decisions</h4>
-              <ul class="decisions">
-                <li><strong>Hybrid retrieval.</strong> Vectors catch paraphrases. Keyword search catches the exact
-                  clause names and numbers that embeddings blur.</li>
-                <li><strong>Rerank before generating.</strong> A cross-encoder scores every (question, passage) pair, so
-                  the strongest evidence reaches the model first.</li>
-                <li><strong>Verify, then involve a human.</strong> A quote that isn't in the source verbatim fails
-                  validation. Validated answers still wait for human approval.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="flow" data-flow="rag">
-            <div class="flow-bar">
-              <span class="mini-label">Request flow</span>
-              <div class="flow-scenarios" role="group" aria-label="Scenarios"></div>
-            </div>
-            <div class="flow-stage"></div>
-            <ol class="flow-log" aria-live="polite" aria-label="Request log"></ol>
-            <p class="flow-static">Question → keyword search + vector search (pgvector) → cross-encoder rerank → LLM
-              draft with quote → verbatim-quote check → human approval.</p>
-          </div>
-        </article>
-
-        <article class="case card reveal" id="case-jugaad" aria-labelledby="case-jugaad-title">
-          <div class="case-head">
-            <div>
-              <p class="case-kicker"><span class="case-num">02</span>Side project · Live</p>
-              <h3 class="case-title" id="case-jugaad-title">Jugaad Link</h3>
-              <p class="case-line">A URL shortener with Redis-cached redirects, password-protected and expiring links,
-                and per-link analytics.</p>
-            </div>
-            <div class="case-links">
-              <a class="link-pill" href="https://jugaadlink.vercel.app" target="_blank" rel="noopener">Live <svg class="i"><use href="#i-arrow" /></svg></a>
-              <a class="link-pill" href="https://github.com/Dilip-Kashyp/jugaadlink-be" target="_blank" rel="noopener">Backend <svg class="i"><use href="#i-arrow" /></svg></a>
-              <a class="link-pill" href="https://github.com/Dilip-Kashyp/Jugaadlink" target="_blank" rel="noopener">Frontend <svg class="i"><use href="#i-arrow" /></svg></a>
-            </div>
-          </div>
-          <div class="case-body">
-            <div>
-              <h4 class="mini-label">What I built</h4>
-              <p>A Go (Gin, GORM) API on PostgreSQL and Redis with JWT auth, custom slugs, QR codes, guest sessions, a
-                Chrome extension, and click analytics by device, browser, country and referrer. Next.js frontend.</p>
-              <ul class="tags" aria-label="Technologies">
-                <li>Go</li>
-                <li>Gin</li>
-                <li>GORM</li>
-                <li>PostgreSQL</li>
-                <li>Redis</li>
-                <li>JWT</li>
-                <li>Docker</li>
-                <li>Next.js</li>
-              </ul>
-            </div>
-            <div>
-              <h4 class="mini-label">Engineering decisions</h4>
-              <ul class="decisions">
-                <li><strong>Cache only plain links.</strong> Password, expiry and click-limit rules must run on every
-                  visit. Caching those redirects would silently bypass them.</li>
-                <li><strong>Record clicks asynchronously.</strong> Analytics never sits on the redirect's critical
-                  path.</li>
-                <li><strong>Fail to a friendly page.</strong> Disabled, expired and over-limit links redirect to an
-                  explanation instead of a bare error.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="flow" data-flow="jugaad">
-            <div class="flow-bar">
-              <span class="mini-label">Request flow</span>
-              <div class="flow-scenarios" role="group" aria-label="Scenarios"></div>
-            </div>
-            <div class="flow-stage"></div>
-            <ol class="flow-log" aria-live="polite" aria-label="Request log"></ol>
-            <p class="flow-static">Browser → Gin API → Redis (hit: 302 redirect) or PostgreSQL (miss: rule checks,
-              302, then cache).</p>
-          </div>
-        </article>
-
-        <article class="case card reveal" id="case-atlas" aria-labelledby="case-atlas-title">
-          <div class="case-head">
-            <div>
-              <p class="case-kicker"><span class="case-num">03</span>Side project</p>
-              <h3 class="case-title" id="case-atlas-title">Atlas</h3>
-              <p class="case-line">A multi-tenant Slack and GitHub assistant: OAuth 2.0, per-workspace webhooks, and a
-                Gemini agent that calls tools.</p>
-            </div>
-            <div class="case-links">
-              <a class="link-pill" href="https://github.com/Dilip-Kashyp/Atles" target="_blank" rel="noopener">Code <svg class="i"><use href="#i-arrow" /></svg></a>
-            </div>
-          </div>
-          <div class="case-body">
-            <div>
-              <h4 class="mini-label">What I built</h4>
-              <p>A FastAPI modular monolith with a Next.js 15 dashboard: OAuth 2.0 login (Google, GitHub, Slack),
-                organization and workspace tenancy, per-tenant webhook ingestion, and a Gemini orchestrator with
-                function calling and a tool dispatcher. PostgreSQL via async SQLAlchemy and Alembic.</p>
-              <ul class="tags" aria-label="Technologies">
-                <li>Python</li>
-                <li>FastAPI</li>
-                <li>SQLAlchemy</li>
-                <li>PostgreSQL</li>
-                <li>Redis</li>
-                <li>Gemini</li>
-                <li>OAuth 2.0</li>
-                <li>Next.js</li>
-              </ul>
-            </div>
-            <div>
-              <h4 class="mini-label">Engineering decisions</h4>
-              <ul class="decisions">
-                <li><strong>Encrypt provider tokens at rest.</strong> Slack and GitHub tokens are Fernet-encrypted in
-                  PostgreSQL and decrypted only for the tenant that sent the event.</li>
-                <li><strong>Rotate refresh tokens.</strong> They're stored hashed, rotated on every refresh and kept in
-                  HTTP-only cookies.</li>
-                <li><strong>Modular monolith first.</strong> One deployable with clear module boundaries (auth,
-                  integrations, orchestrator), to split only when scale asks for it.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="flow" data-flow="atlas">
-            <div class="flow-bar">
-              <span class="mini-label">Request flow</span>
-              <div class="flow-scenarios" role="group" aria-label="Scenarios"></div>
-            </div>
-            <div class="flow-stage"></div>
-            <ol class="flow-log" aria-live="polite" aria-label="Request log"></ol>
-            <p class="flow-static">Slack event → FastAPI → tenant lookup and token decryption in PostgreSQL → Gemini
-              function call → GitHub tool → reply in thread.</p>
-          </div>
-        </article>
-
-        <article class="case card reveal" id="case-contrihub" aria-labelledby="case-contrihub-title">
-          <div class="case-head">
-            <div>
-              <p class="case-kicker"><span class="case-num">04</span>Side project · Live</p>
-              <h3 class="case-title" id="case-contrihub-title">ContriHub</h3>
-              <p class="case-line">Helps developers find beginner-friendly open-source projects, with AI repo
-                explanations and learning roadmaps.</p>
-            </div>
-            <div class="case-links">
-              <a class="link-pill" href="https://contri-hub.vercel.app" target="_blank" rel="noopener">Live <svg class="i"><use href="#i-arrow" /></svg></a>
-              <a class="link-pill" href="https://github.com/Dilip-Kashyp/ContriHub" target="_blank" rel="noopener">Code <svg class="i"><use href="#i-arrow" /></svg></a>
-            </div>
-          </div>
-          <div class="case-body">
-            <div>
-              <h4 class="mini-label">What I built</h4>
-              <p>A Go (Gin, GORM) backend on PostgreSQL and Redis: GitHub OAuth, a caching GitHub API proxy,
-                Groq-powered repo explanations, roadmaps and project matching, and persistent AI chat history. Next.js
-                frontend with filters for language, labels like good-first-issue, topics and stars.</p>
-              <ul class="tags" aria-label="Technologies">
-                <li>Go</li>
-                <li>Gin</li>
-                <li>GORM</li>
-                <li>PostgreSQL</li>
-                <li>Redis</li>
-                <li>Groq</li>
-                <li>Next.js</li>
-              </ul>
-            </div>
-            <div>
-              <h4 class="mini-label">Engineering decisions</h4>
-              <ul class="decisions">
-                <li><strong>Rate-limit every AI endpoint.</strong> Redis limits by IP and by token, so one client
-                  can't burn the LLM budget or the GitHub quota.</li>
-                <li><strong>Cache the GitHub proxy.</strong> Repeat lookups are served from Redis instead of spending
-                  GitHub API calls.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="flow" data-flow="contrihub">
-            <div class="flow-bar">
-              <span class="mini-label">Request flow</span>
-              <div class="flow-scenarios" role="group" aria-label="Scenarios"></div>
-            </div>
-            <div class="flow-stage"></div>
-            <ol class="flow-log" aria-live="polite" aria-label="Request log"></ol>
-            <p class="flow-static">Next.js → Go API → Redis rate limit → Redis cache or GitHub API → Groq LLM → 200,
-              or 429 when the limit is hit.</p>
-          </div>
-        </article>
-
-        <div class="also reveal" id="also">
-          <div class="also-item">
-            <p class="mini-label">Also built</p>
-            <p><strong>Document extraction prototype.</strong> Serverless OCR + LLM extraction on AWS (Textract for
-              OCR, Bedrock for structured fields). <span class="badge">Prototype · never deployed to production</span></p>
-          </div>
-          <a class="also-more" href="https://github.com/Dilip-Kashyp?tab=repositories" target="_blank" rel="noopener">
-            Everything else is on GitHub <svg class="i"><use href="#i-arrow" /></svg>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ SKILLS ============ -->
-    <section class="section" id="skills" aria-labelledby="skills-title">
-      <div class="wrap">
-        <header class="section-head reveal">
-          <p class="kicker"><span>03</span>Skills</p>
-          <h2 id="skills-title">Every skill, <em>with proof</em></h2>
-          <p class="section-sub">Select a skill to see where I've actually used it.</p>
-        </header>
-
-        <div class="skills-grid">
-          <div class="skill-group card reveal">
-            <h3 class="mini-label">Languages</h3>
-            <div class="chips">
-              <button class="chip" type="button" data-skill="python">Python <span class="chip-yrs">2y</span></button>
-              <button class="chip" type="button" data-skill="go">Go <span class="chip-yrs">1y</span></button>
-              <button class="chip" type="button" data-skill="typescript">TypeScript</button>
-              <button class="chip" type="button" data-skill="javascript">JavaScript</button>
-              <button class="chip" type="button" data-skill="sql">SQL</button>
-              <button class="chip" type="button" data-skill="cpp">C++</button>
-            </div>
-            <div class="skill-detail" hidden></div>
-          </div>
-
-          <div class="skill-group card reveal" style="--d: .05s">
-            <h3 class="mini-label">Backend</h3>
-            <div class="chips">
-              <button class="chip" type="button" data-skill="fastapi">FastAPI <span class="chip-yrs">1.5y</span></button>
-              <button class="chip" type="button" data-skill="nodejs">Node.js <span class="chip-yrs">2y</span></button>
-              <button class="chip" type="button" data-skill="express">Express</button>
-              <button class="chip" type="button" data-skill="gin">Gin</button>
-              <button class="chip" type="button" data-skill="gorm">GORM</button>
-              <button class="chip" type="button" data-skill="sqlalchemy">SQLAlchemy</button>
-              <button class="chip" type="button" data-skill="rest">REST APIs</button>
-            </div>
-            <div class="skill-detail" hidden></div>
-          </div>
-
-          <div class="skill-group card reveal" style="--d: .1s">
-            <h3 class="mini-label">AI &amp; retrieval <span class="chip-yrs">1.5y</span></h3>
-            <div class="chips">
-              <button class="chip" type="button" data-skill="rag">RAG</button>
-              <button class="chip" type="button" data-skill="hybrid">Hybrid search</button>
-              <button class="chip" type="button" data-skill="rerank">Reranking</button>
-              <button class="chip" type="button" data-skill="pgvector">pgvector</button>
-              <button class="chip" type="button" data-skill="gemini">Gemini</button>
-              <button class="chip" type="button" data-skill="groq">Groq</button>
-              <button class="chip" type="button" data-skill="bedrock">AWS Bedrock</button>
-              <button class="chip" type="button" data-skill="textract">AWS Textract</button>
-            </div>
-            <div class="skill-detail" hidden></div>
-          </div>
-
-          <div class="skill-group card reveal">
-            <h3 class="mini-label">Data &amp; cloud</h3>
-            <div class="chips">
-              <button class="chip" type="button" data-skill="postgresql">PostgreSQL <span class="chip-yrs">2y</span></button>
-              <button class="chip" type="button" data-skill="redis">Redis</button>
-              <button class="chip" type="button" data-skill="aws">AWS <span class="chip-yrs">1.5y</span></button>
-              <button class="chip" type="button" data-skill="docker">Docker <span class="chip-yrs">1.5y</span></button>
-            </div>
-            <div class="skill-detail" hidden></div>
-          </div>
-
-          <div class="skill-group card reveal" style="--d: .05s">
-            <h3 class="mini-label">Backend patterns</h3>
-            <div class="chips">
-              <button class="chip" type="button" data-skill="caching">Caching</button>
-              <button class="chip" type="button" data-skill="ratelimit">Rate limiting</button>
-              <button class="chip" type="button" data-skill="auth">Auth (JWT, OAuth 2.0)</button>
-              <button class="chip" type="button" data-skill="tenancy">Multi-tenancy</button>
-              <button class="chip" type="button" data-skill="async">Async pipelines</button>
-              <button class="chip" type="button" data-skill="payments">Payments</button>
-            </div>
-            <div class="skill-detail" hidden></div>
-          </div>
-
-          <div class="skill-group card reveal" style="--d: .1s">
-            <h3 class="mini-label">Frontend</h3>
-            <div class="chips">
-              <button class="chip" type="button" data-skill="nextjs">React / Next.js <span class="chip-yrs">2y</span></button>
-              <button class="chip" type="button" data-skill="tailwind">Tailwind CSS</button>
-            </div>
-            <div class="skill-detail" hidden></div>
-          </div>
-        </div>
-
-        <p class="also-familiar reveal"><span class="mini-label">Also worked with</span>MongoDB · Qdrant · FAISS ·
-          SentenceTransformers · Azure OpenAI · Azure Document Intelligence · CloudFormation · Nginx · Linux · GitHub
-          Actions · Redux</p>
-      </div>
-    </section>
-
-    <!-- ============ ASK ============ -->
-    <section class="section" id="ask" aria-labelledby="ask-title">
-      <div class="wrap">
-        <header class="section-head reveal">
-          <p class="kicker"><span>04</span>Ask</p>
-          <h2 id="ask-title">Interview my <em>resume</em></h2>
-        </header>
-
-        <div class="ask-grid">
-          <div class="ask-explain reveal">
-            <p class="section-sub">A tiny retrieval engine that runs entirely in your browser, over facts I wrote about
-              myself. No LLM and no API key. If it can't find a grounded answer, it says so instead of guessing.</p>
-            <ol class="how">
-              <li><span class="how-n">1</span>
-                <p>Tokenize your question and fix typos against the vocabulary</p>
-              </li>
-              <li><span class="how-n">2</span>
-                <p>Score <b data-kb-count>50</b> hand-written facts with BM25</p>
-              </li>
-              <li><span class="how-n">3</span>
-                <p>Blend in trigram similarity for fuzzy matches</p>
-              </li>
-              <li><span class="how-n">4</span>
-                <p>Below the confidence threshold? Say “I don't know”</p>
-              </li>
-            </ol>
-            <p class="fine">It's the same idea as the quote validation in my production pipeline, small enough to run
-              client-side. Nothing you type leaves this page.</p>
-          </div>
-
-          <div class="chat card reveal" style="--d: .08s">
-            <div class="chat-head">
-              <img src="assets/images/avatar-96.webp" alt="" width="36" height="36">
-              <div>
-                <p class="chat-name">resume.bot</p>
-                <p class="chat-sub">answers only from Dilip's resume</p>
-              </div>
-              <span class="chat-badge">BM25 + trigram</span>
-            </div>
-            <div class="chat-log" id="chat-log" role="log" aria-live="polite" aria-label="Conversation">
-              <div class="msg msg-bot">
-                <p>Hi! Ask me about Dilip's experience, projects, stack or availability. Try a suggestion below or type
-                  your own question.</p>
+                </div>
+                <p class="console-foot">Real static JSON served by this site. Try it in your terminal.</p>
               </div>
             </div>
-            <div class="chat-suggest" id="chat-suggest" aria-label="Suggested questions">
-              <button type="button" class="pill">What do you do at Stryv?</button>
-              <button type="button" class="pill">How do you stop AI hallucinating?</button>
-              <button type="button" class="pill">Have you used Redis?</button>
-              <button type="button" class="pill">Open to relocation?</button>
-              <button type="button" class="pill">Why should we hire you?</button>
-              <button type="button" class="pill">How does this chat work?</button>
-            </div>
-            <form class="chat-form" id="chat-form">
-              <label class="sr-only" for="chat-input">Your question</label>
-              <input id="chat-input" name="q" type="text" autocomplete="off" maxlength="200"
-                placeholder="e.g. Have you worked with FastAPI?">
-              <button class="btn btn-primary btn-sm" type="submit">Ask</button>
-            </form>
-            <noscript>
-              <p class="chat-noscript">The chat needs JavaScript. Everything it knows is already on this page.</p>
-            </noscript>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- ============ ABOUT ============ -->
-    <section class="section" id="about" aria-labelledby="about-title">
-      <div class="wrap">
-        <header class="section-head reveal">
-          <p class="kicker"><span>05</span>About</p>
-          <h2 id="about-title">A bit about <em>me</em></h2>
-        </header>
-
-        <div class="about-grid">
-          <figure class="about-photo reveal">
-            <img src="assets/images/avatar-320.webp" alt="Illustrated portrait of Dilip Kumar" width="320"
-              height="320" loading="lazy">
-          </figure>
-          <div class="about-text reveal" style="--d: .06s">
-            <p>I studied computer applications at Kurukshetra University in Haryana and joined my first engineering team
-              in June 2024, before I graduated. Since then I've spent two years at early-stage startups, owning auth,
-              payments and AI features end to end.</p>
-            <p>I care about systems that behave predictably under load, APIs that are boring to integrate with, and AI
-              features that can show their evidence.</p>
-            <p>Next, I want a team with larger scale and stronger engineering practices, where I can go deeper on
-              backend systems and production AI. I practice DSA regularly on NeetCode and LeetCode and I'm working
-              through system design.</p>
-          </div>
-        </div>
-
-        <div class="facts">
-          <div class="fact card reveal">
-            <h3 class="mini-label">Education</h3>
-            <p><strong>BCA</strong>, Kurukshetra University</p>
-            <p class="muted">Govt. College Chhachhrauli, Yamunanagar · 2022 — 2025</p>
-          </div>
-          <div class="fact card reveal" style="--d: .05s">
-            <h3 class="mini-label">Recognition</h3>
-            <p><strong>2nd place</strong>, state-level exhibition (150+ colleges)</p>
-            <p class="muted">College Roll of Honour</p>
-          </div>
-          <div class="fact card reveal" style="--d: .1s">
-            <h3 class="mini-label">Certifications</h3>
-            <p><strong>Web Software Development</strong>, Altos FITECH 101 University</p>
-            <p class="muted">Node.js, Simplilearn</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ CONTACT ============ -->
-    <section class="section contact" id="contact" aria-labelledby="contact-title">
-      <div class="wrap">
-        <header class="section-head reveal">
-          <p class="kicker"><span>06</span>Contact</p>
-          <h2 id="contact-title">Have a backend or AI role in mind? <em>Let's talk.</em></h2>
-        </header>
-        <div class="contact-main reveal">
-          <a class="contact-email" href="mailto:info@dilipkashyap.in">info@dilipkashyap.in</a>
-          <button class="btn btn-ghost btn-sm" type="button" data-copy="info@dilipkashyap.in">
-            <svg class="i"><use href="#i-copy" /></svg>Copy
-          </button>
-        </div>
-        <ul class="contact-meta reveal">
-          <li>Usually replies within 24 hours</li>
-          <li>Hyderabad, India · <span data-clock>IST</span></li>
-          <li>Open to Bengaluru, remote or relocation</li>
-        </ul>
-        <div class="contact-links reveal">
-          <a class="btn btn-ghost" href="https://www.linkedin.com/in/dilip-kashyap/" target="_blank" rel="noopener"><svg class="i"><use href="#i-linkedin" /></svg>LinkedIn</a>
-          <a class="btn btn-ghost" href="https://github.com/Dilip-Kashyp" target="_blank" rel="noopener"><svg class="i"><use href="#i-github" /></svg>GitHub</a>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </main>
 
   <footer class="footer">

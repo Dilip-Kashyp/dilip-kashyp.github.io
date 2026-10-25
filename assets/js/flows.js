@@ -1,4 +1,4 @@
-/* Request-flow diagrams for the case studies.
+/* Request-flow diagrams for the case studies, and the timeline in the hero.
    Each flow is an SVG of nodes and edges. A scenario sends packets along the
    edges step by step while a log narrates what happens. Layout switches to a
    vertical arrangement on narrow screens so labels stay readable. */
@@ -11,9 +11,57 @@
 
   // Positions are [x as a fraction of the width, y in px].
   const FLOWS = {
+    // The hero timeline. Steps set `route` so the log shows dates, not node names.
+    life: {
+      label: "Timeline",
+      empty: "Starting in 2003…",
+      minWide: 640,
+      nodes: {
+        born: { label: "Born", sub: "2003" },
+        ten: { label: "Class 10", sub: "2020" },
+        twelve: { label: "Class 12", sub: "2022" },
+        bca: { label: "BCA", sub: "2022 – 2025" },
+        nexgen: { label: "NexGen Elit", sub: "2024" },
+        grad: { label: "Graduated", sub: "2025" },
+        stryv: { label: "Stryv.ai", sub: "2025" },
+        next: { label: "Your team?", sub: "next" },
+      },
+      edges: [
+        ["born", "ten"], ["ten", "twelve"], ["twelve", "bca"], ["bca", "nexgen"],
+        ["nexgen", "grad"], ["grad", "stryv"], ["stryv", "next"],
+      ],
+      // Two rows that snake back on themselves, so the path reads as one track.
+      layout: {
+        wide: {
+          h: 200,
+          pos: { born: [0, 46], ten: [1 / 3, 46], twelve: [2 / 3, 46], bca: [1, 46], nexgen: [1, 154], grad: [2 / 3, 154], stryv: [1 / 3, 154], next: [0, 154] },
+        },
+        narrow: {
+          h: 360,
+          pos: { born: [0.25, 40], ten: [0.75, 40], twelve: [0.75, 133], bca: [0.25, 133], nexgen: [0.25, 226], grad: [0.75, 226], stryv: [0.75, 319], next: [0.25, 319] },
+        },
+      },
+      scenarios: [
+        {
+          id: "life",
+          label: "Replay",
+          steps: [
+            { at: "born", route: "2003", msg: "Hello, world.", mark: "2003" },
+            { from: "born", to: "ten", route: "2020", msg: "Passed Class 10.", mark: "2020 ✓" },
+            { from: "ten", to: "twelve", route: "2022", msg: "Passed Class 12.", mark: "2022 ✓" },
+            { from: "twelve", to: "bca", route: "Aug 2022", msg: "Started a BCA at Kurukshetra University.", mark: "2022 – 2025" },
+            { from: "bca", to: "nexgen", route: "Jun 2024", msg: "First job, still in college: Full-Stack Engineer at NexGen Elit.", mark: "2024 · first job" },
+            { from: "nexgen", to: "grad", route: "2025", msg: "Graduated with a BCA.", mark: "2025 ✓" },
+            { from: "grad", to: "stryv", route: "Jul 2025", msg: "Full-Stack Engineer at Stryv.ai.", mark: "2025 → now" },
+            { from: "stryv", to: "next", route: "next", tone: "ok", msg: "Open to backend & AI roles. Next stop: your team?", mark: "open to roles" },
+          ],
+        },
+      ],
+    },
+
     rag: {
       label: "Grounded retrieval pipeline",
-      minWide: 820,
+      minWide: 700,
       nodes: {
         q: { label: "Question", sub: "from a reviewer", short: "question" },
         kw: { label: "Keyword search", sub: "exact terms", short: "keyword" },
@@ -30,8 +78,8 @@
       ],
       layout: {
         wide: {
-          h: 250,
-          pos: { q: [0, 125], kw: [0.2, 65], vec: [0.2, 185], rerank: [0.4, 125], llm: [0.6, 125], check: [0.8, 125], human: [1, 65], flag: [1, 185] },
+          h: 220,
+          pos: { q: [0, 110], kw: [0.25, 55], vec: [0.25, 165], rerank: [0.5, 55], llm: [0.5, 165], check: [0.75, 110], human: [1, 55], flag: [1, 165] },
         },
         narrow: {
           h: 530,
@@ -84,7 +132,7 @@
       },
       edges: [["user", "api"], ["api", "redis"], ["api", "pg"]],
       layout: {
-        wide: { h: 230, pos: { user: [0, 115], api: [0.46, 115], redis: [1, 55], pg: [1, 175] } },
+        wide: { h: 200, pos: { user: [0, 100], api: [0.46, 100], redis: [1, 45], pg: [1, 155] } },
         narrow: { h: 320, pos: { user: [0.5, 40], api: [0.5, 150], redis: [0.25, 270], pg: [0.75, 270] } },
       },
       scenarios: [
@@ -154,7 +202,7 @@
       },
       edges: [["slack", "api"], ["web", "api"], ["api", "pg"], ["api", "llm"], ["llm", "gh"]],
       layout: {
-        wide: { h: 250, pos: { slack: [0, 65], web: [0, 185], api: [0.36, 125], llm: [0.68, 65], pg: [0.68, 185], gh: [1, 65] } },
+        wide: { h: 220, pos: { slack: [0, 55], web: [0, 165], api: [0.36, 110], llm: [0.68, 55], pg: [0.68, 165], gh: [1, 55] } },
         narrow: { h: 420, pos: { slack: [0.25, 40], web: [0.75, 40], api: [0.5, 150], llm: [0.25, 265], pg: [0.75, 265], gh: [0.25, 380] } },
       },
       scenarios: [
@@ -203,7 +251,7 @@
       },
       edges: [["user", "api"], ["api", "redis"], ["api", "gh"], ["api", "llm"]],
       layout: {
-        wide: { h: 260, pos: { user: [0, 130], api: [0.42, 130], redis: [1, 45], gh: [1, 130], llm: [1, 215] } },
+        wide: { h: 230, pos: { user: [0, 115], api: [0.42, 115], redis: [1, 40], gh: [1, 115], llm: [1, 190] } },
         narrow: { h: 410, pos: { user: [0.5, 40], api: [0.5, 150], redis: [0.25, 260], gh: [0.75, 260], llm: [0.5, 370] } },
       },
       scenarios: [
@@ -387,7 +435,7 @@
     }
 
     function emptyLog() {
-      log.innerHTML = '<li class="is-empty">Pick a scenario to replay the request.</li>';
+      log.innerHTML = `<li class="is-empty">${def.empty || "Pick a scenario to replay the request."}</li>`;
     }
 
     function travel(from, to, tone, token) {
@@ -435,13 +483,13 @@
       if (token !== runToken) return;
       const still = reducedMotion.matches;
       if (step.at) {
-        writeLog(n, def.nodes[step.at].short, step.msg, step.tone);
+        writeLog(n, step.route || def.nodes[step.at].short, step.msg, step.tone);
         activate(step.at);
         if (step.mark) mark(step.at, step.mark, step.tone);
         await wait(still ? 0 : 650);
         return;
       }
-      writeLog(n, `${def.nodes[step.from].short} → ${def.nodes[step.to].short}`, step.msg, step.tone);
+      writeLog(n, step.route || `${def.nodes[step.from].short} → ${def.nodes[step.to].short}`, step.msg, step.tone);
       activate(step.from);
       if (!still) await travel(step.from, step.to, step.tone, token);
       if (token !== runToken) return;
@@ -487,7 +535,8 @@
     }).observe(stage);
 
     // Replay the first scenario once, the first time the diagram is on screen.
-    if (!reducedMotion.matches && "IntersectionObserver" in window) {
+    // With reduced motion it runs without animation, straight to the end.
+    if ("IntersectionObserver" in window) {
       const io = new IntersectionObserver((entries) => {
         if (!entries.some((e) => e.isIntersecting)) return;
         io.disconnect();
