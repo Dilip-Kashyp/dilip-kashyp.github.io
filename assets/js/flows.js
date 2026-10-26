@@ -1,4 +1,4 @@
-/* Request-flow diagrams for the case studies, and the timeline in the hero.
+/* Request-flow diagrams for the case studies.
    Each flow is an SVG of nodes and edges. A scenario sends packets along the
    edges step by step while a log narrates what happens. Layout switches to a
    vertical arrangement on narrow screens so labels stay readable. */
@@ -11,54 +11,6 @@
 
   // Positions are [x as a fraction of the width, y in px].
   const FLOWS = {
-    // The hero timeline. Steps set `route` so the log shows dates, not node names.
-    life: {
-      label: "Timeline",
-      empty: "Starting in 2003…",
-      minWide: 640,
-      nodes: {
-        born: { label: "Born", sub: "2003" },
-        ten: { label: "Class 10", sub: "2020" },
-        twelve: { label: "Class 12", sub: "2022" },
-        bca: { label: "BCA", sub: "2022 – 2025" },
-        nexgen: { label: "NexGen Elit", sub: "2024" },
-        grad: { label: "Graduated", sub: "2025" },
-        stryv: { label: "Stryv.ai", sub: "2025" },
-        next: { label: "Your team?", sub: "next" },
-      },
-      edges: [
-        ["born", "ten"], ["ten", "twelve"], ["twelve", "bca"], ["bca", "nexgen"],
-        ["nexgen", "grad"], ["grad", "stryv"], ["stryv", "next"],
-      ],
-      // Two rows that snake back on themselves, so the path reads as one track.
-      layout: {
-        wide: {
-          h: 200,
-          pos: { born: [0, 46], ten: [1 / 3, 46], twelve: [2 / 3, 46], bca: [1, 46], nexgen: [1, 154], grad: [2 / 3, 154], stryv: [1 / 3, 154], next: [0, 154] },
-        },
-        narrow: {
-          h: 360,
-          pos: { born: [0.25, 40], ten: [0.75, 40], twelve: [0.75, 133], bca: [0.25, 133], nexgen: [0.25, 226], grad: [0.75, 226], stryv: [0.75, 319], next: [0.25, 319] },
-        },
-      },
-      scenarios: [
-        {
-          id: "life",
-          label: "Replay",
-          steps: [
-            { at: "born", route: "2003", msg: "Hello, world.", mark: "2003" },
-            { from: "born", to: "ten", route: "2020", msg: "Passed Class 10.", mark: "2020 ✓" },
-            { from: "ten", to: "twelve", route: "2022", msg: "Passed Class 12.", mark: "2022 ✓" },
-            { from: "twelve", to: "bca", route: "Aug 2022", msg: "Started a BCA at Kurukshetra University.", mark: "2022 – 2025" },
-            { from: "bca", to: "nexgen", route: "Jun 2024", msg: "First job, still in college: Full-Stack Engineer at NexGen Elit.", mark: "2024 · first job" },
-            { from: "nexgen", to: "grad", route: "2025", msg: "Graduated with a BCA.", mark: "2025 ✓" },
-            { from: "grad", to: "stryv", route: "Jul 2025", msg: "Full-Stack Engineer at Stryv.ai.", mark: "2025 → now" },
-            { from: "stryv", to: "next", route: "next", tone: "ok", msg: "Open to backend & AI roles. Next stop: your team?", mark: "open to roles" },
-          ],
-        },
-      ],
-    },
-
     rag: {
       label: "Grounded retrieval pipeline",
       minWide: 700,
@@ -435,7 +387,7 @@
     }
 
     function emptyLog() {
-      log.innerHTML = `<li class="is-empty">${def.empty || "Pick a scenario to replay the request."}</li>`;
+      log.innerHTML = '<li class="is-empty">Pick a scenario to replay the request.</li>';
     }
 
     function travel(from, to, tone, token) {
@@ -483,13 +435,13 @@
       if (token !== runToken) return;
       const still = reducedMotion.matches;
       if (step.at) {
-        writeLog(n, step.route || def.nodes[step.at].short, step.msg, step.tone);
+        writeLog(n, def.nodes[step.at].short, step.msg, step.tone);
         activate(step.at);
         if (step.mark) mark(step.at, step.mark, step.tone);
         await wait(still ? 0 : 650);
         return;
       }
-      writeLog(n, step.route || `${def.nodes[step.from].short} → ${def.nodes[step.to].short}`, step.msg, step.tone);
+      writeLog(n, `${def.nodes[step.from].short} → ${def.nodes[step.to].short}`, step.msg, step.tone);
       activate(step.from);
       if (!still) await travel(step.from, step.to, step.tone, token);
       if (token !== runToken) return;

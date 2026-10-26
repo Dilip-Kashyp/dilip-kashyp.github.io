@@ -3,3 +3,5 @@ PERSONAL_INFORMATION_LAYER.md
 
 # Build output from the reverted Next.js attempt
 .next/
+config.bat
+node_modules

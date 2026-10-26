@@ -1,32 +1,39 @@
 /* =========================================================
-   Dilip Kumar — portfolio
-   Warm ink + amber (from the avatar). Dark by default,
-   light via system preference or the theme toggle.
+   Dilip Kumar · portfolio
+   Midnight + indigo, after Linear, Raycast and Stripe: a
+   blue-tinted near-black, translucent hairline borders, light
+   from above (inset highlights, a soft top glow) and a single
+   indigo accent for actions and highlights. Green, amber and
+   red only carry status. Dark by default, light via system
+   preference or the theme toggle.
    ========================================================= */
 
 :root {
   color-scheme: dark;
-  --bg: #0e0d0b;
-  --bg-soft: #131210;
-  --surface: #181613;
-  --surface-2: #201d18;
-  --line: #2a2620;
-  --line-strong: #3a342b;
-  --text: #f3eee5;
-  --text-2: #bfb6a7;
-  --text-3: #8f8778;
-  --accent: #f5b301;
-  --accent-ink: #f7c443;
-  --accent-soft: rgba(245, 179, 1, 0.12);
-  --on-accent: #1a1404;
+  --bg: #08090c;
+  --bg-soft: #0c0d12;
+  --surface: #101117;
+  --surface-2: #171821;
+  --line: rgba(255, 255, 255, 0.07);
+  --line-strong: rgba(255, 255, 255, 0.12);
+  --text: #f7f8f8;
+  --text-2: #b4bccb;
+  --text-3: #8a8f98;
+  --accent: #5d5fef;
+  --accent-ink: #a5acff;
+  --accent-ink-2: #7dd3fc;
+  --accent-soft: rgba(93, 95, 239, 0.16);
+  --on-accent: #ffffff;
   --ok: #4fd18b;
-  --warn: #f5b301;
-  --err: #ff7a66;
-  --dot: rgba(255, 255, 255, 0.07);
-  --glow: rgba(245, 179, 1, 0.13);
-  --spot: rgba(245, 179, 1, 0.06);
-  --shadow: 0 24px 60px -28px rgba(0, 0, 0, 0.7);
-  --grain-opacity: 0.05;
+  --warn: #fbbf24;
+  --err: #ff6b6b;
+  --dot: rgba(255, 255, 255, 0.05);
+  --glow: rgba(93, 95, 239, 0.22);
+  --glow-2: rgba(56, 189, 248, 0.07);
+  --spot: rgba(129, 140, 248, 0.08);
+  --highlight: rgba(255, 255, 255, 0.06);
+  --shadow: 0 24px 60px -28px rgba(0, 0, 0, 0.8);
+  --grain-opacity: 0.035;
   --shade-k: 0.16;
 
   --sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -40,50 +47,60 @@
 
 :root[data-theme="light"] {
   color-scheme: light;
-  --bg: #f6f1e7;
-  --bg-soft: #f0e9dc;
-  --surface: #fffcf6;
-  --surface-2: #f4eddf;
-  --line: #e4dac8;
-  --line-strong: #d3c6af;
-  --text: #1c1914;
-  --text-2: #4a4339;
-  --text-3: #6e6556;
-  --accent-ink: #8f5b00;
-  --accent-soft: rgba(245, 179, 1, 0.2);
-  --ok: #18804a;
-  --warn: #8f5b00;
+  --bg: #f7f8fa;
+  --bg-soft: #f0f2f6;
+  --surface: #ffffff;
+  --surface-2: #f2f4f8;
+  --line: rgba(15, 18, 40, 0.08);
+  --line-strong: rgba(15, 18, 40, 0.14);
+  --text: #0b0d14;
+  --text-2: #4a5263;
+  --text-3: #636a7d;
+  --accent: #4f46e5;
+  --accent-ink: #4338ca;
+  --accent-ink-2: #0284c7;
+  --accent-soft: rgba(79, 70, 229, 0.1);
+  --on-accent: #ffffff;
+  --ok: #15803d;
+  --warn: #b45309;
   --err: #c0392b;
-  --dot: rgba(60, 40, 10, 0.1);
-  --glow: rgba(245, 179, 1, 0.22);
-  --spot: rgba(245, 179, 1, 0.1);
-  --shadow: 0 24px 50px -30px rgba(80, 55, 10, 0.35);
-  --grain-opacity: 0.06;
+  --dot: rgba(15, 18, 40, 0.07);
+  --glow: rgba(99, 102, 241, 0.14);
+  --glow-2: rgba(14, 165, 233, 0.08);
+  --spot: rgba(79, 70, 229, 0.05);
+  --highlight: rgba(255, 255, 255, 0.9);
+  --shadow: 0 24px 50px -30px rgba(15, 18, 40, 0.25);
+  --grain-opacity: 0.03;
   --shade-k: 0.06;
 }
 
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) {
     color-scheme: light;
-    --bg: #f6f1e7;
-    --bg-soft: #f0e9dc;
-    --surface: #fffcf6;
-    --surface-2: #f4eddf;
-    --line: #e4dac8;
-    --line-strong: #d3c6af;
-    --text: #1c1914;
-    --text-2: #4a4339;
-    --text-3: #6e6556;
-    --accent-ink: #8f5b00;
-    --accent-soft: rgba(245, 179, 1, 0.2);
-    --ok: #18804a;
-    --warn: #8f5b00;
+    --bg: #f7f8fa;
+    --bg-soft: #f0f2f6;
+    --surface: #ffffff;
+    --surface-2: #f2f4f8;
+    --line: rgba(15, 18, 40, 0.08);
+    --line-strong: rgba(15, 18, 40, 0.14);
+    --text: #0b0d14;
+    --text-2: #4a5263;
+    --text-3: #636a7d;
+    --accent: #4f46e5;
+    --accent-ink: #4338ca;
+    --accent-ink-2: #0284c7;
+    --accent-soft: rgba(79, 70, 229, 0.1);
+    --on-accent: #ffffff;
+    --ok: #15803d;
+    --warn: #b45309;
     --err: #c0392b;
-    --dot: rgba(60, 40, 10, 0.1);
-    --glow: rgba(245, 179, 1, 0.22);
-    --spot: rgba(245, 179, 1, 0.1);
-      --shadow: 0 24px 50px -30px rgba(80, 55, 10, 0.35);
-    --grain-opacity: 0.06;
+    --dot: rgba(15, 18, 40, 0.07);
+    --glow: rgba(99, 102, 241, 0.14);
+    --glow-2: rgba(14, 165, 233, 0.08);
+    --spot: rgba(79, 70, 229, 0.05);
+    --highlight: rgba(255, 255, 255, 0.9);
+    --shadow: 0 24px 50px -30px rgba(15, 18, 40, 0.25);
+    --grain-opacity: 0.03;
     --shade-k: 0.06;
   }
 }
@@ -186,6 +203,23 @@ b {
   background: transparent;
 }
 
+/* Panes inside the cards and the hero scroll without showing a scrollbar. */
+.card-body,
+.slide,
+.flow-log,
+.chat-log,
+.console-json {
+  scrollbar-width: none;
+}
+
+.card-body::-webkit-scrollbar,
+.slide::-webkit-scrollbar,
+.flow-log::-webkit-scrollbar,
+.chat-log::-webkit-scrollbar,
+.console-json::-webkit-scrollbar {
+  display: none;
+}
+
 kbd {
   display: inline-block;
   font: 500 11px/1 var(--mono);
@@ -259,16 +293,12 @@ kbd {
   color: var(--text-3);
 }
 
-.spark {
-  color: var(--accent-ink);
-}
-
 .progress {
   position: fixed;
   inset: 0 0 auto;
   z-index: 60;
   height: 2px;
-  background: var(--accent);
+  background: linear-gradient(90deg, var(--accent), var(--accent-ink-2));
   transform-origin: 0 50%;
   transform: scaleX(var(--p, 0));
 }
@@ -295,12 +325,13 @@ kbd {
 }
 
 .btn-primary {
-  background: var(--accent);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 82%, #fff), var(--accent));
   color: var(--on-accent);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 10px 30px -12px var(--accent);
 }
 
 .btn-primary:hover {
-  background: #ffc21a;
+  filter: brightness(1.08);
   transform: translateY(-1px);
 }
 
@@ -401,31 +432,11 @@ kbd {
     var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
+  box-shadow: inset 0 1px 0 var(--highlight);
 }
 
-/* ---------- Search and theme buttons ---------- */
+/* ---------- Icon buttons ---------- */
 
-.hero-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.palette-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  height: 36px;
-  padding: 0 7px 0 12px;
-  border-radius: 999px;
-  border: 1px solid var(--line-strong);
-  background: var(--surface);
-  color: var(--text-2);
-  font-size: 0.88rem;
-  transition: border-color 0.2s, color 0.2s;
-}
-
-.palette-btn:hover,
 .icon-btn:hover {
   border-color: var(--accent);
   color: var(--text);
@@ -443,31 +454,8 @@ kbd {
   transition: border-color 0.2s, color 0.2s;
 }
 
-.icon-moon {
-  display: none;
-}
-
-:root[data-theme="light"] .icon-sun {
-  display: none;
-}
-
-:root[data-theme="light"] .icon-moon {
-  display: block;
-}
-
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) .icon-sun {
-    display: none;
-  }
-
-  :root:not([data-theme="dark"]) .icon-moon {
-    display: block;
-  }
-}
-
 /* ---------- Hero ----------
-   Top row, intro, then the timeline: a flow diagram that flows.js plays step
-   by step, like the request flows in the Work card. */
+   The opening screen: the headline and intro, centred in the viewport. */
 
 .hero {
   position: relative;
@@ -484,77 +472,18 @@ kbd {
   inset: 0;
   z-index: -2;
   pointer-events: none;
-  background: radial-gradient(ellipse 65% 55% at 50% 42%, var(--glow), transparent 72%);
+  background:
+    radial-gradient(ellipse 60% 50% at 50% -8%, var(--glow), transparent 70%),
+    radial-gradient(ellipse 38% 32% at 90% 14%, var(--glow-2), transparent 70%);
 }
 
-.hero-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-/* The auto margins centre the intro and the timeline in the leftover height. */
+/* The auto margins centre the intro in the leftover height. */
 .hero-main {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: end;
   gap: 24px 56px;
-  margin-top: auto;
-  padding-top: 32px;
-}
-
-.hero-life {
-  margin-bottom: auto;
-  padding-top: clamp(28px, 5vh, 48px);
-}
-
-.hero-life .flow {
-  margin-top: 0;
-  padding-top: 0;
-  border-top: 0;
-}
-
-.hero-life .flow-stage {
-  margin-top: 12px;
-}
-
-.hero-life .flow-log {
-  height: 168px;
-}
-
-.hero-life .flow-log li {
-  grid-template-columns: 2.2em 5.2em minmax(0, 1fr);
-}
-
-.hero-life .flow-log .log-route,
-.hero-life .flow-log .log-msg {
-  grid-column: auto;
-}
-
-/* Wide screens: the log sits beside the diagram, exactly as tall as it.
-   1100px keeps the diagram wide enough (640px) for its two-row layout. */
-@media (min-width: 1100px) {
-  .hero-life .flow {
-    display: grid;
-    grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr);
-    gap: 12px 16px;
-  }
-
-  .hero-life .flow-bar,
-  .hero-life .flow-static {
-    grid-column: 1 / -1;
-  }
-
-  .hero-life .flow-stage,
-  .hero-life .flow-log {
-    margin-top: 0;
-  }
-
-  .hero-life .flow-log {
-    height: auto;
-    contain: size;
-  }
+  margin-block: auto;
 }
 
 .scroll-cue {
@@ -597,72 +526,11 @@ kbd {
   }
 }
 
-.status {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 7px 14px 7px 11px;
-  border-radius: 999px;
-  border: 1px solid var(--line-strong);
-  background: var(--surface);
-  font: 500 12.5px/1.2 var(--mono);
-  color: var(--text-2);
-}
-
-.status-dot {
-  position: relative;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--ok);
-}
-
-.status-dot::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: var(--ok);
-  animation: ping 2s var(--ease) infinite;
-}
-
-@keyframes ping {
-  0% {
-    transform: scale(1);
-    opacity: 0.6;
-  }
-
-  80%,
-  100% {
-    transform: scale(2.8);
-    opacity: 0;
-  }
-}
-
-.byline {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font: 500 13px/1.4 var(--mono);
-  color: var(--text-2);
-}
-
-.byline img {
-  border-radius: 50%;
-  background: var(--surface-2);
-}
-
-.byline strong {
-  font: 600 15px/1.4 var(--sans);
-  color: var(--text);
-}
-
 h1 {
   max-width: 17em;
-  margin-top: 14px;
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(2.1rem, 1rem + 2.8vw, 3.6rem);
+  font-size: clamp(1.9rem, 1.1rem + 1.7vw, 2.75rem);
   line-height: 1.02;
   letter-spacing: -0.015em;
   text-wrap: balance;
@@ -672,6 +540,20 @@ h1 em,
 h2 em {
   font-style: italic;
   color: var(--accent-ink);
+  background: linear-gradient(100deg, var(--accent-ink) 25%, var(--accent-ink-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  /* Room for the italic overhang, so the last letter isn't clipped. */
+  padding-right: 0.08em;
+  margin-right: -0.08em;
+}
+
+h1 em::selection,
+h2 em::selection {
+  -webkit-text-fill-color: var(--on-accent);
 }
 
 .lede {
@@ -686,12 +568,6 @@ h2 em {
   flex-direction: column;
   align-items: flex-end;
   gap: 18px;
-}
-
-.hero-cta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
 }
 
 .socials {
@@ -721,11 +597,11 @@ h2 em {
 /* ---------- API console (always dark, like a terminal) ---------- */
 
 .console {
-  --t-bg: #12100c;
-  --t-bar: #1a1712;
-  --t-line: #2d281f;
-  --t-text: #ede7db;
-  --t-dim: #958c7c;
+  --t-bg: #090a0f;
+  --t-bar: #0f1018;
+  --t-line: #1e2030;
+  --t-text: #e8eaf2;
+  --t-dim: #8b90a5;
   background: var(--t-bg);
   color: var(--t-text);
   border: 1px solid var(--t-line);
@@ -753,15 +629,7 @@ h2 em {
   width: 11px;
   height: 11px;
   border-radius: 50%;
-  background: #ff5f57;
-}
-
-.console-lights i:nth-child(2) {
-  background: #febc2e;
-}
-
-.console-lights i:nth-child(3) {
-  background: #28c840;
+  background: var(--t-line);
 }
 
 .console-title {
@@ -785,7 +653,7 @@ h2 em {
 
 .console-copy:hover {
   color: var(--t-text);
-  border-color: #f5b301;
+  border-color: var(--t-dim);
 }
 
 .console-tabs {
@@ -832,7 +700,7 @@ h2 em {
 }
 
 .console-prompt {
-  color: #f5b301;
+  color: #a5b4fc;
 }
 
 .console-status {
@@ -846,11 +714,11 @@ h2 em {
 }
 
 .c-warn {
-  color: #f5b301;
+  color: #fbbf24;
 }
 
 .c-err {
-  color: #ff7a66;
+  color: #ff6b6b;
 }
 
 .console-json {
@@ -860,7 +728,9 @@ h2 em {
   font: 13px/1.6 var(--mono);
   white-space: pre-wrap;
   overflow-wrap: anywhere;
-  scrollbar-color: #3a342b transparent;
+  /* The fade shows there is more to scroll. */
+  -webkit-mask-image: linear-gradient(to top, transparent, #000 32px);
+  mask-image: linear-gradient(to top, transparent, #000 32px);
 }
 
 .console-json:focus-visible {
@@ -868,19 +738,19 @@ h2 em {
 }
 
 .j-key {
-  color: #f7c443;
+  color: #a5b4fc;
 }
 
 .j-str {
-  color: #a8e2bf;
+  color: #a7f3d0;
 }
 
 .j-num {
-  color: #8cc2ff;
+  color: #7dd3fc;
 }
 
 .j-lit {
-  color: #ff9e7a;
+  color: #f9a8d4;
 }
 
 .caret {
@@ -889,7 +759,7 @@ h2 em {
   height: 1.1em;
   margin-left: 2px;
   vertical-align: -0.2em;
-  background: #f5b301;
+  background: #a5b4fc;
   animation: blink 1s steps(1) infinite;
 }
 
@@ -933,7 +803,7 @@ h2 {
   margin-top: 12px;
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(2.1rem, 1.3rem + 2.4vw, 3.4rem);
+  font-size: clamp(1.6rem, 1rem + 1.3vw, 2.3rem);
   line-height: 1;
   letter-spacing: -0.01em;
   text-wrap: balance;
@@ -954,11 +824,13 @@ h2 {
    stack.js tilts the arriving card and pushes the covered ones back. */
 
 .stack {
-  --stack-top: 56px;
+  /* Cards are at most --card-max tall; on taller screens they sit centred. */
+  --card-max: 880px;
+  --stack-top: max(56px, (100svh - var(--card-max)) / 2);
   position: relative;
   width: min(1180px, 100% - 2 * var(--gutter));
   margin: 0 auto;
-  padding-bottom: 12vh;
+  padding-bottom: var(--gutter);
 }
 
 .stack-anchor {
@@ -982,7 +854,7 @@ h2 {
   height: 100%;
   padding: clamp(20px, 2.6vw, 40px);
   border-radius: 28px;
-  box-shadow: 0 40px 90px -50px rgba(0, 0, 0, 0.75);
+  box-shadow: inset 0 1px 0 var(--highlight), 0 40px 90px -50px rgba(0, 0, 0, 0.75);
   transform-origin: 50% 0;
   overflow: hidden;
 }
@@ -1017,56 +889,93 @@ h2 {
   min-height: 0;
 }
 
-@media (min-width: 720px) and (min-height: 600px) {
-  .stack-card {
-    position: sticky;
-    top: var(--stack-top);
-    height: calc(100svh - var(--stack-top) - 24px);
-    max-height: 880px;
-    margin-bottom: 14vh;
-  }
-
-  .stack-card:last-child {
-    margin-bottom: 0;
-  }
-
-  .card-body {
-    flex: 1;
-    overflow-y: auto;
-    scrollbar-width: thin;
-  }
-
-  .card-body.ask-grid {
-    grid-template-rows: minmax(0, 1fr);
-    align-items: stretch;
-    overflow: hidden;
-  }
-
-  .ask-grid .chat {
-    min-height: 0;
-  }
-
-  .ask-grid .chat-log {
-    flex: 1;
-    height: auto;
-    min-height: 140px;
-  }
-
-  /* Project logs grow into any height the card has to spare. */
-  .proj-panel:not([hidden]):has(> .flow),
-  .proj .flow {
-    display: flex;
-    flex: 1 0 auto;
-    flex-direction: column;
-  }
-
-  .proj .flow-log {
-    flex: 1 0 auto;
-  }
+/* Card stack, on every screen. stack.js adds .is-stacked (without it the
+   cards simply flow). A card whose content fits one screen is .is-fixed:
+   exactly one screen tall, shrunk with zoom (--fit) if it is a little over.
+   A taller card keeps its natural height and stack.js gives it a negative
+   sticky top, so it scrolls through like a section and then stays while the
+   next card slides over it. Nothing ever scrolls inside a card. :where()
+   keeps these selectors as specific as plain ones. */
+.stack.is-stacked {
+  --card-h: min(100svh - var(--stack-top) - 24px, var(--card-max));
+  /* The last card never sticks; it scrolls to wherever the page ends. Leave
+     exactly half the spare height below it so it ends up centred. */
+  padding-bottom: calc((100svh - var(--card-h)) / 2);
 }
 
-/* Laptops around 768px tall: tighten cards so their content fits. */
-@media (min-width: 720px) and (min-height: 600px) and (max-height: 860px) {
+:where(.stack.is-stacked) .stack-card {
+  position: sticky;
+  top: var(--stack-top);
+  min-height: var(--card-h);
+  margin-bottom: 0;
+  /* Tilt around the bottom of the first screenful, even on a tall card. */
+  transform-origin: 50% var(--card-h);
+}
+
+/* The scroll gap between cards sits on the anchor, not on the card: a sticky
+   card's margin must stay inside the stack, so a bottom margin would lift
+   the pile above the last card when the page ends. */
+:where(.stack.is-stacked) .stack-card + .stack-anchor {
+  margin-top: 14vh;
+}
+
+/* Links to the last card (#contact) scroll to that centred end position. */
+:where(.stack.is-stacked) .stack-anchor:has(+ .stack-card:last-child) {
+  scroll-margin-top: calc((100svh - var(--card-h)) / 2);
+}
+
+:where(.stack-card.is-fixed) {
+  height: var(--card-h);
+}
+
+:where(.stack-card.is-fixed) .stack-card__inner {
+  zoom: var(--fit, 1);
+}
+
+:where(.stack-card.is-fixed) .card-body {
+  flex: 1;
+  overflow-y: auto;
+}
+
+:where(.stack-card.is-fixed) .card-body.ask-grid {
+  grid-template-rows: minmax(0, 1fr);
+  align-items: stretch;
+  overflow: hidden;
+}
+
+:where(.stack-card.is-fixed) .ask-grid .chat {
+  min-height: 0;
+}
+
+:where(.stack-card.is-fixed) .ask-grid .chat-log {
+  flex: 1;
+  height: auto;
+  min-height: 140px;
+}
+
+/* The diagram grows into any height the card has to spare, centred. */
+:where(.stack-card.is-fixed) .proj-panel:not([hidden]):has(> .flow),
+:where(.stack-card.is-fixed) .proj .flow {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+}
+
+:where(.stack-card.is-fixed) .proj .flow-stage {
+  display: grid;
+  flex: 1 0 auto;
+  align-content: center;
+}
+
+/* One line for the caption, so a long step never changes the layout. */
+:where(.stack-card.is-fixed) .proj .flow-log .log-msg {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Laptops and short windows: tighten cards so their content fits. */
+@media (min-width: 720px) and (max-height: 860px) {
   .stack {
     --stack-top: 48px;
   }
@@ -1076,11 +985,11 @@ h2 {
   }
 
   .stack-card h2 {
-    font-size: clamp(1.9rem, 1.2rem + 1.8vw, 2.6rem);
+    font-size: clamp(1.5rem, 1rem + 1vw, 2rem);
   }
 
   .card-head {
-    margin-bottom: 10px;
+    margin-bottom: 16px;
   }
 
   .proj {
@@ -1103,15 +1012,11 @@ h2 {
 
   .proj-title {
     margin: 6px 0 4px;
-    font-size: clamp(1.6rem, 1.2rem + 1vw, 2.1rem);
-  }
-
-  .proj .flow-log {
-    height: 66px;
+    font-size: clamp(1.3rem, 1rem + 0.7vw, 1.65rem);
   }
 
   .xp-title {
-    font-size: clamp(1.7rem, 1.2rem + 1.2vw, 2.3rem);
+    font-size: clamp(1.35rem, 1rem + 0.8vw, 1.75rem);
   }
 
   .role-points {
@@ -1122,18 +1027,6 @@ h2 {
   .about-text p {
     font-size: 1rem;
   }
-}
-
-/* Phones and short windows: cards flow normally and rise in with a tilt. */
-.stack.is-flow .stack-card {
-  opacity: 0;
-  transform: perspective(900px) rotateX(12deg) translateY(56px);
-  transition: opacity 0.7s var(--ease), transform 0.9s var(--ease);
-}
-
-.stack.is-flow .stack-card.is-in {
-  opacity: 1;
-  transform: none;
 }
 
 /* ---------- Sliders (experience, projects) ---------- */
@@ -1173,26 +1066,6 @@ h2 {
   color: var(--text);
 }
 
-.slider-arrows {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.slider-count {
-  min-width: 4.6em;
-  font: 500 12px/1 var(--mono);
-  color: var(--text-3);
-  text-align: right;
-}
-
-.slider-arrows .icon-btn:disabled {
-  border-color: var(--line-strong);
-  color: var(--text-3);
-  opacity: 0.4;
-  cursor: default;
-}
-
 .card-body.slider-track {
   display: grid;
   grid-auto-flow: column;
@@ -1220,7 +1093,6 @@ h2 {
   overflow-y: auto;
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  scrollbar-width: thin;
 }
 
 /* ---------- Experience slides ---------- */
@@ -1263,7 +1135,7 @@ h2 {
 .xp-title {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(1.9rem, 1.3rem + 1.6vw, 2.7rem);
+  font-size: clamp(1.45rem, 1rem + 1vw, 1.95rem);
   line-height: 1.05;
   letter-spacing: -0.01em;
 }
@@ -1316,23 +1188,11 @@ h2 {
   gap: 12px 32px;
 }
 
-.case-kicker {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font: 500 12.5px/1 var(--mono);
-  color: var(--text-3);
-}
-
-.case-num {
-  color: var(--accent-ink);
-}
-
 .proj-title {
-  margin: 10px 0 6px;
+  margin: 0 0 6px;
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(1.8rem, 1.3rem + 1.4vw, 2.5rem);
+  font-size: clamp(1.4rem, 1rem + 0.9vw, 1.85rem);
   line-height: 1.05;
   letter-spacing: -0.01em;
 }
@@ -1349,16 +1209,24 @@ h2 {
   gap: 12px;
 }
 
-.proj-head .tags {
-  justify-content: flex-end;
-  max-width: 340px;
-  margin-top: 0;
-}
-
+/* Project links read as plain text links, not buttons. */
 .case-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px 18px;
+  padding-top: 6px;
+}
+
+.case-links .link-pill {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  color: var(--text-2);
+}
+
+.case-links .link-pill:hover {
+  background: none;
+  color: var(--accent-ink);
 }
 
 .proj-tabs {
@@ -1400,8 +1268,20 @@ h2 {
   border-top: 0;
 }
 
+/* Under a project diagram the log shows only its newest line, as a caption. */
 .proj .flow-log {
-  height: 96px;
+  height: auto;
+  min-height: 1.6em;
+  margin-top: 10px;
+  padding: 0 2px;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: none;
+}
+
+.proj .flow-log li:not(:last-child) {
+  display: none;
 }
 
 .slide.proj {
@@ -1455,7 +1335,7 @@ h2 {
 .more-item h4 {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   line-height: 1.1;
 }
 
@@ -1527,38 +1407,6 @@ h2 {
   margin-top: 12px;
 }
 
-.about-stats {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin-top: clamp(18px, 3vh, 32px);
-  border-top: 1px solid var(--line);
-}
-
-.stat {
-  padding: 18px 20px 4px;
-  border-left: 1px solid var(--line);
-}
-
-.stat:first-child {
-  padding-left: 0;
-  border-left: 0;
-}
-
-.stat-num {
-  font-family: var(--serif);
-  font-size: clamp(2.2rem, 1.6rem + 1.8vw, 3.2rem);
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-}
-
-.stat-label {
-  max-width: 24ch;
-  margin-top: 8px;
-  font-size: 0.88rem;
-  line-height: 1.45;
-  color: var(--text-2);
-}
-
 .facts {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1628,9 +1476,11 @@ h2 {
   overflow: hidden;
 }
 
+/* Height comes from the svg's height attribute, not its width, so the layout
+   doesn't depend on when flows.js redraws for a new width. */
 .flow-stage svg {
+  display: block;
   width: 100%;
-  height: auto;
 }
 
 .flow-edge {
@@ -2020,6 +1870,9 @@ h2 {
   padding: 18px;
   overflow-y: auto;
   overscroll-behavior: contain;
+  /* Older messages fade out under the top edge. */
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 18px);
+  mask-image: linear-gradient(to bottom, transparent, #000 18px);
 }
 
 .msg {
@@ -2264,7 +2117,7 @@ h2 {
 .contact-body h2 {
   max-width: 17ch;
   margin-top: 0;
-  font-size: clamp(2.4rem, 1.4rem + 3.4vw, 4.4rem);
+  font-size: clamp(1.8rem, 1.1rem + 1.8vw, 2.75rem);
 }
 
 .contact-body .contact-main {
@@ -2280,7 +2133,7 @@ h2 {
 
 .contact-email {
   font-family: var(--serif);
-  font-size: clamp(2rem, 1rem + 4.4vw, 4.4rem);
+  font-size: clamp(1.4rem, 0.9rem + 1.5vw, 2.2rem);
   line-height: 1.1;
   overflow-wrap: anywhere;
   background-image: linear-gradient(var(--accent), var(--accent));
@@ -2315,31 +2168,6 @@ h2 {
   margin-top: 30px;
 }
 
-/* ---------- Footer ---------- */
-
-.footer {
-  padding: 28px 0 44px;
-  border-top: 1px solid var(--line);
-  font-size: 0.88rem;
-  color: var(--text-3);
-}
-
-.footer-inner {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 10px 24px;
-}
-
-.footer a {
-  color: var(--text-2);
-  border-bottom: 1px solid var(--line-strong);
-}
-
-.footer a:hover {
-  color: var(--text);
-}
-
 /* ---------- Command palette ---------- */
 
 .palette {
@@ -2368,7 +2196,7 @@ h2 {
 }
 
 .palette::backdrop {
-  background: rgba(10, 8, 5, 0.55);
+  background: rgba(5, 6, 12, 0.6);
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
 }
@@ -2591,11 +2419,6 @@ h2 {
     align-items: flex-start;
   }
 
-  .proj-head .tags {
-    justify-content: flex-start;
-    max-width: none;
-  }
-
   .decisions-grid {
     grid-template-columns: minmax(0, 1fr);
     gap: 12px;
@@ -2609,19 +2432,6 @@ h2 {
 
   .hero-side {
     align-items: flex-start;
-  }
-
-  .about-stats {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .stat:nth-child(odd) {
-    padding-left: 0;
-    border-left: 0;
-  }
-
-  .stat:nth-child(n + 3) {
-    border-top: 1px solid var(--line);
   }
 
   .facts {
@@ -2715,11 +2525,6 @@ h2 {
     grid-column: 2;
   }
 
-  .flow-log,
-  .proj .flow-log {
-    height: 220px;
-  }
-
   .chat-log {
     height: 360px;
   }
@@ -2730,34 +2535,11 @@ h2 {
 }
 
 @media (max-width: 480px) {
-  .palette-btn {
-    padding: 0 10px;
-  }
-
-  .palette-btn kbd,
-  .palette-btn-label {
-    display: none;
-  }
-
-  .hero-cta .btn {
-    flex: 1 1 auto;
-  }
-
-  .footer-hint {
-    display: none;
-  }
-
   .msg {
     max-width: 96%;
   }
 
   .chat-badge {
-    display: none;
-  }
-}
-
-@media (hover: none) {
-  .footer-hint {
     display: none;
   }
 }
@@ -2776,15 +2558,6 @@ h2 {
   }
 
   .reveal-on .reveal {
-    opacity: 1;
-    transform: none;
-  }
-
-  .status-dot::after {
-    display: none;
-  }
-
-  .stack.is-flow .stack-card {
     opacity: 1;
     transform: none;
   }

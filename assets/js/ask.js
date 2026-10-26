@@ -21,12 +21,12 @@
     {
       id: "stryv", t: "Current role at Stryv.ai",
       k: "current job role company stryv present now today working employer position responsibilities doing",
-      a: "At **Stryv.ai** (Jul 2025 – present) I build backend and AI features for a vendor-compliance platform: the AI automation module (hybrid retrieval, reranking, quote validation, human approval), JWT auth with OTP password recovery, assessment workflows with trust-score calculation, and part of an AWS document-verification pipeline. [See the case study](#case-rag).",
+      a: "At **Stryv.ai** (since Jul 2025) I build backend and AI features for a vendor-compliance platform: the AI automation module (hybrid retrieval, reranking, quote validation, human approval), JWT auth with OTP password recovery, assessment workflows with trust-score calculation, and part of an AWS document-verification pipeline. [See the case study](#case-rag).",
     },
     {
       id: "nexgen", t: "Previous role at NexGen Elit",
       k: "previous job past company nexgen elit first job before earlier last employer",
-      a: "At **NexGen Elit** (Jun 2024 – Jul 2025, remote) I built a job-portal backend with skill-based assessments and a dual-sided subscription model, integrated Razorpay, and built the Node.js/Express backend for a virtual fitness platform with Google Meet sessions.",
+      a: "At **NexGen Elit** (Jun 2024 to Jul 2025, remote) I built a job-portal backend with skill-based assessments and a dual-sided subscription model, integrated Razorpay, and built the Node.js/Express backend for a virtual fitness platform with Google Meet sessions.",
     },
     {
       id: "years", t: "Years of experience",
@@ -206,7 +206,7 @@
     {
       id: "education", t: "Education",
       k: "education degree college university bca study studied graduate graduation qualification kurukshetra academic",
-      a: "**BCA** (Bachelor of Computer Applications) from Kurukshetra University, at Govt. College Chhachhrauli, Yamunanagar, Haryana (2022–2025). I joined my first engineering team in June 2024, before graduating.",
+      a: "**BCA** (Bachelor of Computer Applications) from Kurukshetra University, at Govt. College Chhachhrauli, Yamunanagar, Haryana (2022 to 2025). I joined my first engineering team in June 2024, before graduating.",
     },
     {
       id: "certs", t: "Certifications",

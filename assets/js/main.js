@@ -24,7 +24,7 @@
   }
 
   function syncThemeColor() {
-    if (themeMeta) themeMeta.content = currentTheme() === "light" ? "#f6f1e7" : "#0e0d0b";
+    if (themeMeta) themeMeta.content = currentTheme() === "light" ? "#f7f8fa" : "#08090c";
   }
 
   function toggleTheme(origin) {
@@ -45,8 +45,6 @@
     document.startViewTransition(apply);
   }
 
-  const themeButton = $("#theme-toggle");
-  if (themeButton) themeButton.addEventListener("click", () => toggleTheme(themeButton));
   syncThemeColor();
 
   // ---------- Toast + copy ----------
@@ -108,22 +106,7 @@
     history.replaceState(null, "", selector);
   }
 
-  // ---------- Reveal on scroll + number count-up ----------
-  function countUp(el) {
-    const num = $("[data-count]", el);
-    if (!num || reducedMotion.matches) return;
-    const end = Number(num.dataset.count);
-    const prefix = num.dataset.prefix || "";
-    const suffix = num.dataset.suffix || "";
-    const start = performance.now();
-    const frame = (now) => {
-      const t = Math.min(1, (now - start) / 1200);
-      num.textContent = `${prefix}${Math.round(end * (1 - Math.pow(1 - t, 3)))}${suffix}`;
-      if (t < 1) requestAnimationFrame(frame);
-    };
-    requestAnimationFrame(frame);
-  }
-
+  // ---------- Reveal on scroll ----------
   const revealables = $$(".reveal");
   if ("IntersectionObserver" in window) {
     const revealObserver = new IntersectionObserver((entries) => {
@@ -131,7 +114,6 @@
         if (!entry.isIntersecting) continue;
         entry.target.classList.add("in");
         revealObserver.unobserve(entry.target);
-        countUp(entry.target);
       }
     }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
     revealables.forEach((el) => revealObserver.observe(el));
@@ -389,6 +371,32 @@
   chips.forEach((chip) => chip.addEventListener("click", () => showSkill(chip)));
   if (chips[0]) showSkill(chips[0]);
 
+  // Hold the panel at the height of the tallest skill, so picking another one
+  // never changes the card's height. Runs before stack.js fits the cards: its
+  // resize delay is shorter and its font hook is registered first.
+  function reserveSkillHeight() {
+    if (!skillDetail) return;
+    const shown = skillDetail.innerHTML;
+    skillDetail.style.minHeight = "";
+    let tallest = 0;
+    for (const chip of chips) {
+      const skill = SKILLS[chip.dataset.skill];
+      if (!skill) continue;
+      skillDetail.innerHTML = renderSkill(skill);
+      tallest = Math.max(tallest, skillDetail.offsetHeight);
+    }
+    skillDetail.innerHTML = shown;
+    skillDetail.style.minHeight = `${tallest}px`;
+  }
+
+  reserveSkillHeight();
+  if (document.fonts) document.fonts.ready.then(reserveSkillHeight);
+  let skillResizeTimer = 0;
+  window.addEventListener("resize", () => {
+    clearTimeout(skillResizeTimer);
+    skillResizeTimer = setTimeout(reserveSkillHeight, 100);
+  });
+
   // ---------- Command palette ----------
   function initPalette() {
     const dialog = $("#palette");
@@ -404,18 +412,18 @@
 
     const COMMANDS = [
       { group: "Jump to", icon: "01", label: "Experience", run: go("#experience") },
-      { group: "Jump to", icon: "02", label: "Selected work", keys: "projects case studies", run: go("#work") },
+      { group: "Jump to", icon: "02", label: "Work", keys: "projects case studies", run: go("#work") },
       { group: "Jump to", icon: "03", label: "Skills", keys: "stack tech", run: go("#skills") },
       { group: "Jump to", icon: "04", label: "Interview my resume", keys: "ask chat bot questions", run: go("#ask") },
-      { group: "Jump to", icon: "05", label: "About", keys: "education awards certifications", run: go("#about") },
+      { group: "Jump to", icon: "05", label: "About", keys: "education awards experience", run: go("#about") },
       { group: "Jump to", icon: "06", label: "Contact", keys: "email hire", run: go("#contact") },
-      { group: "Case studies", icon: "→", label: "Grounded retrieval at Stryv.ai", keys: "rag ai pipeline", run: go("#case-rag") },
+      { group: "Case studies", icon: "→", label: "Grounded RAG at Stryv.ai", keys: "rag ai pipeline grounded retrieval compliance", run: go("#case-rag") },
       { group: "Case studies", icon: "→", label: "Jugaad Link", keys: "url shortener go redis", run: go("#case-jugaad") },
       { group: "Case studies", icon: "→", label: "Atlas", keys: "slack github gemini fastapi", run: go("#case-atlas") },
       { group: "Case studies", icon: "→", label: "ContriHub", keys: "open source groq go", run: go("#case-contrihub") },
       { group: "Actions", icon: "⧉", label: "Copy email address", hint: "info@dilipkashyap.in", run: () => copy("info@dilipkashyap.in") },
       { group: "Actions", icon: "@", label: "Write me an email", keys: "mail contact", run: () => { window.location.href = "mailto:info@dilipkashyap.in"; } },
-      { group: "Actions", icon: "◐", label: "Toggle light / dark theme", keys: "dark mode light mode", run: () => toggleTheme(themeButton) },
+      { group: "Actions", icon: "◐", label: "Toggle light / dark theme", keys: "dark mode light mode", run: () => toggleTheme() },
       { group: "Links", icon: "↗", label: "GitHub", hint: "Dilip-Kashyp", run: open("https://github.com/Dilip-Kashyp") },
       { group: "Links", icon: "↗", label: "LinkedIn", hint: "in/dilip-kashyap", run: open("https://www.linkedin.com/in/dilip-kashyap/") },
       { group: "Links", icon: "↗", label: "Jugaad Link (live)", hint: "jugaadlink.vercel.app", run: open("https://jugaadlink.vercel.app") },
@@ -546,15 +554,6 @@
   initPalette();
 
   // ---------- Small details ----------
-  const isMac = /Mac|iPhone|iPad|iPod/.test(navigator.platform || navigator.userAgent);
-  $$("[data-mod-key]").forEach((el) => {
-    el.textContent = isMac ? "⌘K" : "Ctrl K";
-  });
-
-  $$("[data-year]").forEach((el) => {
-    el.textContent = new Date().getFullYear();
-  });
-
   const clock = $("[data-clock]");
   if (clock) {
     const time = new Intl.DateTimeFormat("en-IN", { timeZone: "Asia/Kolkata", hour: "numeric", minute: "2-digit", hour12: true });

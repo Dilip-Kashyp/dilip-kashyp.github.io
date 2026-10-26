@@ -2,6 +2,9 @@
    ones before it, which tilt back into a 3D pile. Also runs the Experience and
    Projects sliders and the tabs inside each project, and sends links that
    point at a slide (#case-atlas) to the right card and slide.
+   The stack works on every screen and nothing ever scrolls inside a card: a
+   card that fits the window is one screen tall (shrunk a little if needed); a
+   taller one scrolls through like a section, then stays while the next covers it.
    Exposes window.DK.stack.goTo for the command palette and other scripts. */
 (() => {
   "use strict";
@@ -10,8 +13,6 @@
   const $$ = (sel, scope = document) => [...scope.querySelectorAll(sel)];
   const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  // Same condition as the sticky media query in style.css.
-  const stickyQuery = window.matchMedia("(min-width: 720px) and (min-height: 600px)");
 
   const stack = $("#stack");
   if (!stack) return;
@@ -25,11 +26,9 @@
   });
 
   // ---------- 3D stacking ----------
+  // Where each card lands: its sticky top from the CSS. Tall cards stick
+  // higher up (see place()) but still land, and finish tilting, here.
   let tops = [];
-
-  function measure() {
-    tops = cards.map((card) => parseFloat(getComputedStyle(card).top) || 0);
-  }
 
   function clearTransforms() {
     cards.forEach((card, i) => {
@@ -42,7 +41,7 @@
 
   function renderStack() {
     const vh = window.innerHeight;
-    // 0 while a card is below the fold, 1 once it has landed (stuck).
+    // 0 while a card is below the fold, 1 once it has landed.
     const landed = cards.map((card, i) => {
       const top = Math.max(tops[i], anchors[i].getBoundingClientRect().top);
       const rise = clamp((vh - top) / Math.max(1, vh - tops[i]), 0, 1);
@@ -62,50 +61,107 @@
     }
   }
 
+  // ---------- Fitting ----------
+  const over = (el) => Math.max(0, el.scrollHeight - el.clientHeight);
+
+  // Below this zoom a card gets hard to read, so it keeps its natural height
+  // instead. Phone text is already small, so phones shrink less.
+  const minFit = () => (window.innerWidth < 720 ? 0.92 : 0.78);
+
+  // The worst case over the card's slides and the tab panels inside them.
+  function overflow(inner) {
+    let worst = over($(".card-body", inner));
+    for (const slide of $$(".slide", inner)) {
+      const panels = $$(".proj-panel", slide);
+      if (!panels.length) {
+        worst = Math.max(worst, over(slide));
+        continue;
+      }
+      const hidden = panels.map((panel) => panel.hidden);
+      for (const panel of panels) {
+        panels.forEach((other) => (other.hidden = other !== panel));
+        worst = Math.max(worst, over(slide));
+      }
+      panels.forEach((panel, i) => (panel.hidden = hidden[i]));
+    }
+    return worst;
+  }
+
+  // Makes the card one screen tall (.is-fixed) at the largest zoom (--fit)
+  // that still shows all its content. Text rewraps as the zoom changes, so
+  // overflow is not linear in it: binary search instead of scaling by the
+  // ratio. When even the minimum zoom is not enough, the card stays tall.
+  function fitCard(card, inner) {
+    const fitsAt = (zoom) => {
+      inner.style.setProperty("--fit", zoom.toFixed(3));
+      return overflow(inner) < 1;
+    };
+    card.classList.add("is-fixed");
+    inner.style.removeProperty("--fit");
+    if (overflow(inner) < 1) return;
+    let lo = minFit();
+    if (!fitsAt(lo)) {
+      inner.style.removeProperty("--fit");
+      card.classList.remove("is-fixed");
+      return;
+    }
+    let hi = 1;
+    for (let i = 0; i < 6; i++) {
+      const mid = (lo + hi) / 2;
+      if (fitsAt(mid)) lo = mid;
+      else hi = mid;
+    }
+    fitsAt(lo);
+  }
+
+  // A tall card sticks only once its bottom edge is on screen, so all of it
+  // can be read before the next card slides over it.
+  function place() {
+    const vh = document.documentElement.clientHeight;
+    tops = cards.map((card) => {
+      card.style.top = "";
+      const top = parseFloat(getComputedStyle(card).top) || 0;
+      if (!card.classList.contains("is-fixed")) card.style.top = `${Math.min(top, vh - card.offsetHeight - 24)}px`;
+      return top;
+    });
+  }
+
   let frame = 0;
   function onFrame() {
     frame = 0;
-    if (stickyQuery.matches && !reducedMotion.matches) renderStack();
+    if (!reducedMotion.matches) renderStack();
   }
   const schedule = () => {
     if (!frame) frame = requestAnimationFrame(onFrame);
   };
 
-  // Phones and short windows get normal flow; cards rise in as they appear.
-  const revealObserver = "IntersectionObserver" in window
-    ? new IntersectionObserver((entries) => {
-      for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
-        entry.target.classList.add("is-in");
-        revealObserver.unobserve(entry.target);
-      }
-    }, { threshold: 0.06 })
-    : null;
-
+  let size = "";
   function setMode() {
-    const sticky = stickyQuery.matches;
-    stack.classList.toggle("is-flow", !sticky && !reducedMotion.matches && !!revealObserver);
-    if (!sticky || reducedMotion.matches) clearTransforms();
-    measure();
+    size = `${window.innerWidth}x${document.documentElement.clientHeight}`;
+    stack.classList.add("is-stacked");
+    cards.forEach((card, i) => fitCard(card, inners[i]));
+    if (reducedMotion.matches) clearTransforms();
+    place();
     schedule();
   }
 
-  if (revealObserver) cards.forEach((card) => revealObserver.observe(card));
   window.addEventListener("scroll", schedule, { passive: true });
-  window.addEventListener("resize", setMode);
-  stickyQuery.addEventListener("change", setMode);
+  let resizeTimer = 0;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      // Phone toolbars sliding away fire resize too, but leave the layout
+      // viewport (clientHeight) as it was: nothing to refit then.
+      if (`${window.innerWidth}x${document.documentElement.clientHeight}` !== size) setMode();
+    }, 120);
+  });
   reducedMotion.addEventListener("change", setMode);
-  setMode();
 
   // ---------- Sliders ----------
   const sliders = $$("[data-slider]").map((root) => {
     const track = $(".slider-track", root);
     const slides = $$(":scope > .slide", track);
     const tabs = $$('.slider-tabs [role="tab"]', root);
-    const prev = $("[data-slide-prev]", root);
-    const next = $("[data-slide-next]", root);
-    const count = $("[data-slide-count]", root);
-    const pad = (n) => String(n).padStart(2, "0");
     const step = () => track.clientWidth + (parseFloat(getComputedStyle(track).columnGap) || 0);
     let index = 0;
 
@@ -116,9 +172,6 @@
         tab.tabIndex = k === i ? 0 : -1;
       });
       slides.forEach((slide, k) => slide.classList.toggle("is-current", k === i));
-      if (count) count.textContent = `${pad(i + 1)} / ${pad(slides.length)}`;
-      if (prev) prev.disabled = i === 0;
-      if (next) next.disabled = i === slides.length - 1;
     }
 
     function go(i, smooth = true) {
@@ -150,8 +203,6 @@
         tabs[index].focus();
       });
     }
-    if (prev) prev.addEventListener("click", () => go(index - 1));
-    if (next) next.addEventListener("click", () => go(index + 1));
     track.addEventListener("keydown", (event) => {
       if (event.target !== track) return;
       const move = { ArrowRight: 1, ArrowLeft: -1 }[event.key];
@@ -192,6 +243,9 @@
     select(Math.max(0, tabs.findIndex((tab) => tab.getAttribute("aria-selected") === "true")));
   });
 
+  setMode();
+  if (document.fonts) document.fonts.ready.then(setMode);
+
   // ---------- Deep links ----------
   // Scrolls to any id on the page. Ids inside a slide also switch that slider.
   function goTo(id, { smooth = true } = {}) {
@@ -205,7 +259,6 @@
     }
     const card = el.closest(".stack-card");
     if (card) {
-      card.classList.add("is-in");
       const anchor = card.previousElementSibling;
       target = anchor && anchor.classList.contains("stack-anchor") ? anchor : card;
     }
