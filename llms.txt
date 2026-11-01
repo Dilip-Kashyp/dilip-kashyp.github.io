@@ -1,0 +1,45 @@
+# Dilip Kumar (Dilip Kashyap)
+
+> Backend and AI engineer in Hyderabad, India. Two years shipping production systems with Python, FastAPI, Go and Node.js: APIs, authentication, payments, caching and grounded RAG pipelines that only accept answers backed by a verbatim quote from the source. Full-Stack Engineer at Stryv.ai since July 2025. Open to Backend Engineer, AI Engineer and Full-Stack Engineer roles in Hyderabad, Bengaluru or remote.
+
+Website: https://dilipkashyap.in/. Every fact below is also on the website, and the main facts are available as JSON.
+
+## Profile data
+
+- [Profile](https://dilipkashyap.in/api/me.json): name, role, experience, current job, location and the roles he is open to
+- [Stack](https://dilipkashyap.in/api/stack.json): languages, backend, AI, data, cloud and frontend tools
+- [Projects](https://dilipkashyap.in/api/projects.json): side projects with stack, live and code links
+- [Contact](https://dilipkashyap.in/api/contact.json): email, GitHub and LinkedIn
+
+## Experience
+
+- Stryv.ai, Hyderabad, Full-Stack Engineer (July 2025 to present): builds the AI automation module of a vendor-compliance platform (hybrid vector + keyword retrieval on PostgreSQL/pgvector, cross-encoder reranking, verbatim-quote validation, async pipelines with human approval); built JWT authentication and OTP password recovery; contributed to an AWS document-verification pipeline that processed 160K documents in a month at about 90% accuracy; owns the backend for assessment workflows and trust-score calculation; helped build a CRM serving 100K+ users in a 20+ person team.
+- NexGen Elit, remote, Full-Stack Engineer (June 2024 to July 2025): built a job-portal backend with skill-based assessments and dual-sided subscriptions, integrated Razorpay payments and subscriptions, and built a Node.js/Express backend for a virtual fitness platform with Google Meet integration.
+
+## Projects
+
+- [Jugaad Link](https://jugaadlink.vercel.app): URL shortener in Go (Gin, GORM) with PostgreSQL, Redis-cached redirects, password-protected and expiring links, QR codes and per-link analytics. Code: https://github.com/Dilip-Kashyp/jugaadlink-be
+- [Atlas](https://github.com/Dilip-Kashyp/Atles): multi-tenant Slack and GitHub assistant with OAuth 2.0, per-workspace webhooks and a Gemini agent that calls tools (FastAPI, PostgreSQL, Next.js).
+- [ContriHub](https://contri-hub.vercel.app): finds beginner-friendly open-source projects, with AI repo explanations and learning roadmaps (Go, PostgreSQL, Redis, Groq, Next.js). Code: https://github.com/Dilip-Kashyp/ContriHub
+
+## Writing
+
+- [A voice AI assistant, from idea to first place in 48 hours](https://www.linkedin.com/posts/dilip-kashyap_im-excited-to-share-that-my-journey-with-ugcPost-7159506579048857600-s4zc/) (LinkedIn, February 2024): a ChatGPT 3.5 Turbo voice assistant built in 48 hours that won first place at the college and district science exhibitions.
+- [All posts on LinkedIn](https://www.linkedin.com/in/dilip-kashyap/recent-activity/all/)
+
+## Skills
+
+- Languages: Python, Go, TypeScript, JavaScript, SQL
+- Backend: FastAPI, Node.js, Express, Gin, GORM, SQLAlchemy, REST APIs, JWT and OAuth 2.0 auth, caching, rate limiting
+- AI: retrieval-augmented generation, hybrid search, cross-encoder reranking, pgvector, Gemini, Groq, AWS Bedrock, Azure OpenAI
+- Data and cloud: PostgreSQL, Redis, MongoDB, AWS, Azure, Docker, GitHub Actions
+
+## Education
+
+- BCA (Bachelor of Computer Applications), Kurukshetra University, Govt. College Chhachhrauli, 2022 to 2025
+
+## Contact
+
+- Email: info@dilipkashyap.in
+- GitHub: https://github.com/Dilip-Kashyp
+- LinkedIn: https://www.linkedin.com/in/dilip-kashyap/

@@ -1,0 +1,6 @@
+# Search engines and AI agents are welcome to read and cite this site.
+User-agent: *
+Allow: /
+Disallow: /404.html
+
+Sitemap: https://dilipkashyap.in/sitemap.xml

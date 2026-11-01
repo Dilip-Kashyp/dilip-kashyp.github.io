@@ -121,23 +121,6 @@
     revealables.forEach((el) => el.classList.add("in"));
   }
 
-  // ---------- Pointer effect: card spotlight ----------
-  if (finePointer.matches) {
-    let lastCard = null;
-    document.addEventListener("pointermove", (event) => {
-      const card = event.target.closest && event.target.closest(".card");
-      if (lastCard && lastCard !== card) {
-        lastCard.style.removeProperty("--mx");
-        lastCard.style.removeProperty("--my");
-      }
-      lastCard = card;
-      if (!card) return;
-      const box = card.getBoundingClientRect();
-      card.style.setProperty("--mx", `${event.clientX - box.left}px`);
-      card.style.setProperty("--my", `${event.clientY - box.top}px`);
-    }, { passive: true });
-  }
-
   // ---------- API console ----------
   // Pretty-prints JSON, keeping short arrays of primitives on one line.
   function format(value, indent = "") {
@@ -414,9 +397,10 @@
       { group: "Jump to", icon: "01", label: "Experience", run: go("#experience") },
       { group: "Jump to", icon: "02", label: "Work", keys: "projects case studies", run: go("#work") },
       { group: "Jump to", icon: "03", label: "Skills", keys: "stack tech", run: go("#skills") },
-      { group: "Jump to", icon: "04", label: "Interview my resume", keys: "ask chat bot questions", run: go("#ask") },
-      { group: "Jump to", icon: "05", label: "About", keys: "education awards experience", run: go("#about") },
-      { group: "Jump to", icon: "06", label: "Contact", keys: "email hire", run: go("#contact") },
+      { group: "Jump to", icon: "04", label: "Writing", keys: "blog blogs posts articles linkedin", run: go("#writing") },
+      { group: "Jump to", icon: "05", label: "Interview my resume", keys: "ask chat bot questions", run: go("#ask") },
+      { group: "Jump to", icon: "06", label: "About", keys: "education awards experience", run: go("#about") },
+      { group: "Jump to", icon: "07", label: "Contact", keys: "email hire", run: go("#contact") },
       { group: "Case studies", icon: "→", label: "Grounded RAG at Stryv.ai", keys: "rag ai pipeline grounded retrieval compliance", run: go("#case-rag") },
       { group: "Case studies", icon: "→", label: "Jugaad Link", keys: "url shortener go redis", run: go("#case-jugaad") },
       { group: "Case studies", icon: "→", label: "Atlas", keys: "slack github gemini fastapi", run: go("#case-atlas") },

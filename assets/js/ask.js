@@ -64,6 +64,11 @@
       a: "Email me at [info@dilipkashyap.in](mailto:info@dilipkashyap.in) and I'll send my latest resume. The same details are on [LinkedIn](https://www.linkedin.com/in/dilip-kashyap/).",
     },
     {
+      id: "writing", t: "Writing and posts",
+      k: "blog blogs post posts writing write written article articles medium hashnode",
+      a: "I post on [LinkedIn](https://www.linkedin.com/in/dilip-kashyap/recent-activity/all/). The [Writing](#writing) card collects them, starting with how a voice-enabled AI assistant went from an idea to first place at the college and district science exhibitions in 48 hours.",
+    },
+    {
       id: "python", t: "Python",
       k: "python django flask pydantic sqlalchemy alembic scripting",
       a: "Python is my main backend language (**2 years**). I use FastAPI, SQLAlchemy and Alembic. At Stryv.ai, Python/FastAPI powers the AI automation module, and [Atlas](#case-atlas) runs on async SQLAlchemy with Alembic migrations.",

@@ -7,7 +7,7 @@ The page opens with a short intro: the headline, one line about my work and link
 footer, so the cards get the full height of the screen; `Ctrl K` (or `/`) opens the command palette for search,
 sections and the light/dark theme.
 
-After the hero, six cards (About, Experience, Projects, Skills, Ask, Contact) slide up from below as you scroll and
+After the hero, seven cards (About, Experience, Projects, Skills, Writing, Ask, Contact) slide up from below as you scroll and
 stack in 3D: the arriving card is tilted back and flattens as it lands, and the cards under it shrink, lift and darken.
 Experience and Projects are sliders inside a single card. The stack works on every screen, phones included, and
 nothing ever scrolls inside a card: a card that fits the window is exactly one screen tall (`stack.js` shrinks it with
@@ -35,6 +35,8 @@ Open it through a server rather than as a file: the API console in the Contact c
 | "Interview my resume" chat | `assets/js/ask.js` | `KB` holds the facts it can answer from |
 | Skill evidence, command palette, theme, console | `assets/js/main.js` | `SKILLS` maps each skill chip to where it was used |
 | Social preview image | `assets/images/og-card.jpg` | 1200×630, referenced by the Open Graph tags |
+| Search engines and AI agents | `robots.txt`, `sitemap.xml`, `llms.txt` | `llms.txt` is a Markdown summary agents can read without JS |
+| Structured data | `index.html` (`application/ld+json`) | ProfilePage, Person, WebSite and projects for Google |
 
 `404.html` is served by GitHub Pages for any missing path, so it uses absolute asset paths.
 
@@ -45,7 +47,11 @@ Facts appear in more than one place. When something changes (a new job, a new pr
 1. `index.html`: the card (a new project is a new `.slide` plus a tab in the Projects card's `.slider-tabs`)
 2. `api/me.json` and the other `api/*.json` files
 3. `assets/js/ask.js`: the matching `KB` entries, so the chat stays accurate
-4. `assets/js/main.js`: `SKILLS`, if a skill gained new evidence
+4. `llms.txt` and the JSON-LD block in `index.html`, so search engines and AI agents see the change
+5. `assets/js/main.js`: `SKILLS`, if a skill gained new evidence
+
+A new post goes at the top of the Writing card's `<ol class="posts">` in `index.html` (the first `<li>` is shown
+large), plus a line in `llms.txt`.
 
 ## How the resume chat works
 
